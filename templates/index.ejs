@@ -101,9 +101,11 @@
                 <span class="card-title grey-text text-darken-4"><%= poi.name %><i class="material-icons right">close</i></span>
                 <p><%= poi.description %></p>
                 <p><%= poi.more %></p>
-                <% poi.urls.forEach(function(url) { %>
-                  <p><a href="<%= url %>" target="_blank"><%= url %></a></p>
-                <% }) %>                  
+                <% if (poi.urls.length > 0) { %>
+                  <% poi.urls.forEach(function(url) { %>
+                    <p><a href="<%= url %>" target="_blank"><%= url %></a></p>
+                  <% }) %>                  
+                <% } %>                  
               </div>
             </div>  
           </div>
