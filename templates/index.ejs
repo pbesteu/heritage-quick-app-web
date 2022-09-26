@@ -4,149 +4,85 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
   <title><% meta.app_title %></title>
-
+  <!-- Leaflet -->
+  <link href="/public/maps/leaflet/leaflet.css" rel="stylesheet">
+  <link href="/public/maps/leaflet-control/L.Control.Locate.min.css" rel="stylesheet">
+  <script src="/public/maps/leaflet/leaflet.js" charset="utf-8"></script>
+  <script src="/public/maps/leaflet-control/L.Control.Locate.min.js" charset="utf-8"></script>
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="/public/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="/public/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
 <body>
-  <div class="navbar-fixed">
-    <nav style="background-color:<%= content.app.theme.brand %>" role="navigation">
+  <div class="navbar-fixed"> 
+    <nav class="nav-extended" style="background-color:<%= content.app.theme.brand %>">
       <div class="nav-wrapper">
-          <div class="truncate">
-            <a id="logo-container" href="#" class="brand-logo"><%= meta.app_title %></a>
-          </div>
-        <ul class="right hide-on-med-and-down">
+        <a href="#" class="brand-logo"><%= meta.app_title %></a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
           <li><a class="modal-trigger" href="#modalabout">About</a></li>
         </ul>
-
-        <ul id="nav-mobile" class="sidenav">
-          <li><a class="modal-trigger" href="#modalabout">About</a></li>
+      </div>
+      <div class="nav-content">
+        <ul class="tabs tabs-fixed-width tabs-transparent">
+          <li class="tab" id="discovery-step1"><a class="active" href="#cards">Cards</a></li>
+          <li class="tab" id="discovery-step2"><a href="#map">Map</a></li>
         </ul>
-        <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       </div>
     </nav>
   </div>
+  <ul class="sidenav" id="mobile-demo">
+    <li><a class="modal-trigger" href="#modalabout">About</a></li>
+  </ul>
+
+  <!-- Cards -->
+  <div id="cards" class="col s12">
+    <div class="container">
+      <div class="section">
+        <div class="row">
+          <% content.pois.forEach(function(poi) { %>
+            <%- include('card', { poi: poi}) %>
+          <% }); %>
+        </div>
+        <p class="center-align">You have seen all the items 🫠</p>
+      </div>      
+    </div>
+  </div>
+  <!-- end Cards -->
+  <!-- Map -->
+  <div id="map" class="col s12">
+    <%- include('map', { pois: content.pois, color: 'red' }); %>
+  </div>
+  <!-- end Map -->
+
+  <!-- Modal with details -->
+  <% content.pois.forEach(function(poi) { %>
+    <%- include('modaldetail', { poi: poi }); %>
+  <% }); %>
+  <!-- End Modal -->
 
   <!-- About Modal -->
-  <div id="modalabout" class="modal">
-    <div class="modal-content">
-      <h5>About <%= meta.app_title %></h5>
-      <p>
-        Version <%= meta.version %>, updated on <%= meta.updated %>. 
-      </p>
-      <p>
-        <%= content.app.text_info %>
-      </p>
-      <p>
-        <%= content.app.text_acknowledge %>
-      </p>
-      <p>
-        <%= content.app.text_feedback %>
-      </p>
-      <ul>
-        <li><a href="<%= content.app.feedback_url %>" target="_blank">Get involved in the project</a></li>
-        <li><a href="<%= content.app.issue_url %>" target="_blank">Report errors or suggestions</a></li>
-        <li><a href="<%= content.app.repository_url %>" target="_blank">Github Repository</a></li>
-      </ul>
-    </div>
-    <div class="modal-footer">
-      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
-    </div>
-  </div>
-
-  <div class="container">
-    <div class="section">
-      <div class="row">
-        <% content.pois.forEach(function(poi) { %>
-        <div class="col s12 m6 l4 xl3">
-          <div class="card small">
-            <div class="card-image">
-              <% if (poi.images.length > 0) { %>
-                <img src="<%= poi.images[0] %>" alt="<%= poi.name %>">
-              <% } else { %>
-                <img src="/public/images/placeholder.jpg" alt="Point of interest">
-              <% } %>
-              <span class="card-title"><%= poi.name %></span>
-            </div>
-            <div class="card-content">
-              <p><%= poi.description %></p>
-            </div>
-            <div class="card-action">
-              <a class="modal-trigger" href="#modal_<%= poi.id %>">See details</a>
-            </div>
-          </div>
-        </div>
-        <!-- Modal with details -->
-        <div id="modal_<%= poi.id %>" class="modal modal-fixed-footer">
-          <div class="modal-content">
-            <div class="card large">
-              <div class="card-image waves-effect waves-block waves-light">
-                <% if (poi.images.length > 0) { %>
-                  <img src="<%= poi.images[0] %>" alt="<%= poi.name %>">
-                <% } else { %>
-                  <img src="/public/images/placeholder.jpg" alt="Point of interest">
-                <% } %>
-              </div>
-              <div class="card-content">
-                <span class="card-title activator grey-text text-darken-4"><%= poi.name %><i class="material-icons right">more_vert</i></span>
-                <p class="grey-text text-darken-3"><%= poi.description %></p>
-              </div>
-              <div class="card-reveal">
-                <span class="card-title grey-text text-darken-4"><%= poi.name %><i class="material-icons right">close</i></span>
-                <p><%= poi.description %></p>
-                <p><%= poi.more %></p>
-                <% if (poi.urls) { %>
-                  <% poi.urls.forEach(function(url) { %>
-                    <p><a href="<%= url %>" target="_blank"><%= url %></a></p>
-                  <% }) %>                  
-                <% } %>                  
-              </div>
-            </div>  
-          </div>
-          <div class="modal-footer">
-            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
-          </div>
-        </div>        
-        <!-- End Modal -->
-        <% }); %>
-      </div>
-    </div>      
-  </div>
+  <%- include('about', { content: content, meta: meta }) %>
+  <%- include('modalinit', { meta: meta }) %>
   
-  <footer class="page-footer grey darken-3">
-    <div class="container">
-      <div class="row">
-        <div class="col l6 s12">
-          <h5 class="white-text">About <%= meta.app_title %></h5>
-          <p class="grey-text text-lighten-4 small">
-            Version <%= meta.version %>, updated on <%= meta.updated %>. 
-          </p>
-          <p class="grey-text text-lighten-4">
-            <%= content.app.text_info %>
-          </p>
-        </div>
-        <div class="col l3 s12">
-          <h5 class="white-text">Connect</h5>
-          <ul>
-            <li><a class="white-text" href="<%= content.app.feedback_url %>" target="_blank">Get involved in the project</a></li>
-            <li><a class="white-text" href="<%= content.app.issue_url %>" target="_blank">Report errors or suggestions</a></li>
-            <li><a class="white-text" href="<%= content.app.repository_url %>" target="_blank">Github Repository</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="footer-copyright">
-      <div class="container">
-      Made by <a class="orange-text text-lighten-3" href="https://quick-app-initiative.ow2.io/">OW2 Quick App Initiative</a>
-      </div>
-    </div>
-  </footer>
-
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="/public/js/materialize.min.js"></script>
+  <script src="/public/js/geolib.js"></script>  
   <script src="/public/js/init.js"></script>
+
+  <script>
+    // array of poi identifiers in the global variable
+    var identifiers = [];
+    var modalToOpenAtInit = null; 
+    <% content.pois.forEach(function(poi) { %>
+      identifiers.push('<%= poi.id %>');
+      <% if (poi.id === identifier) { %>
+        modalToOpenAtInit = '<%= identifier %>';
+      <% } %>
+    <% }); %>
+  </script>
+
   </body>
 </html>

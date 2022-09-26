@@ -1,0 +1,25 @@
+<div id="modalabout" class="modal">
+    <div class="modal-content">
+      <h5>About <%= meta.app_title %></h5>
+      <p>
+        Version <%= meta.version %>, updated on <%= meta.updated %>. 
+      </p>
+      <p>
+        <%= content.app.text_info %>
+      </p>
+      <p>
+        <%= content.app.text_acknowledge %>
+      </p>
+      <p>
+        <%= content.app.text_feedback %>
+      </p>
+      <ul>
+        <li><a href="<%= content.app.feedback_url %>" target="_blank">Get involved in the project</a></li>
+        <li><a href="<%= content.app.issue_url %>" target="_blank">Report errors or suggestions</a></li>
+        <li><a href="<%= content.app.repository_url %>" target="_blank">Github Repository</a></li>
+      </ul>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+    </div>
+  </div>

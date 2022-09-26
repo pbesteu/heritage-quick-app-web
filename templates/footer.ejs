@@ -1,0 +1,28 @@
+<footer class="page-footer grey darken-3">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">About <%= meta.app_title %></h5>
+          <p class="grey-text text-lighten-4 small">
+            Version <%= meta.version %>, updated on <%= meta.updated %>. 
+          </p>
+          <p class="grey-text text-lighten-4">
+            <%= content.app.text_info %>
+          </p>
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Connect</h5>
+          <ul>
+            <li><a class="white-text" href="<%= content.app.feedback_url %>" target="_blank">Get involved in the project</a></li>
+            <li><a class="white-text" href="<%= content.app.issue_url %>" target="_blank">Report errors or suggestions</a></li>
+            <li><a class="white-text" href="<%= content.app.repository_url %>" target="_blank">Github Repository</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      Made by <a class="orange-text text-lighten-3" href="https://quick-app-initiative.ow2.io/">OW2 Quick App Initiative</a>
+      </div>
+    </div>
+  </footer>

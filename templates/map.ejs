@@ -1,0 +1,47 @@
+<div id="osm">
+</div>
+<script>
+    var geojson = { type : "FeatureCollection", features: []};
+    var colors = ['red', 'blue', 'teal', 'brown', 'green', 'yellow', 'pink', 'pale'];
+    var color = '<%= color %>';
+    if (!color || !colors.includes(color)) {
+        color = 'red' // by default
+    }    
+
+    var map = L.map('osm').setView([43.294264019357556, -5.721740550556461], 10);
+
+    var tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    function createCustomIcon (latlng, title, iconUrl) {
+      let myIcon = L.icon({
+        iconUrl: iconUrl,
+        title: title,
+        iconSize: [28, 41],
+        iconAnchor: [14, 40],
+        popupAnchor: [0, -41]
+      })
+      return L.marker(latlng, { icon: myIcon })
+    }
+
+    var poiLayer = L.featureGroup().addTo(map);
+
+    function openDirections(poiLon, poiLat, title) {
+      var urlDirections = `https://www.petalmaps.com/nav/${myPosition.lon},${myPosition.lat}/${poiLon},${poiLat}/My%20location/${encodeURIComponent(title)}/walk`;
+      window.open(urlDirections, '_blank');
+    }
+
+    const icon = `/public/maps/leaflet/images/marker-icon-${color}.png`
+    <% pois.forEach(function(poi) { %>
+        var marker = createCustomIcon([ <%= poi.lat %>, <%= poi.lon %>], '<%= poi.name %>', icon).addTo(poiLayer);
+        marker.bindPopup(`<div class="card small"><div class="card-image"><img src="/public/images/placeholder.jpg"><span class="card-title"><%= poi.name %></span></div><div class="card-content"><p><%= poi.description %></p></div><div class="card-action"><a class="modal-trigger" href="#modal_<%= poi.id %>">Details</a><a onclick="openDirections('<%= poi.lon %>', '<%= poi.lat %>', '<%= poi.name %>')" href="#">Directions</a></div></div>`);
+    <% }) %>
+
+    map.fitBounds(poiLayer.getBounds());   
+    L.control.locate({
+      flyTo: true,
+      showCompass: true
+    }).addTo(map);
+</script>

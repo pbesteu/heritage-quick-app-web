@@ -1,0 +1,21 @@
+<div class="col s12 m6 l4 xl3">
+    <div class="card small hoverable">
+      <div class="card-image">
+        <% if (poi.images.length > 0) { %>
+          <img src="/public/images/placeholder.jpg" alt="Point of interest">
+          <!--img src="<%= poi.images[0] %>" alt="<%= poi.name %>" -->
+        <% } else { %>
+          <img src="/public/images/placeholder.jpg" alt="Point of interest">
+        <% } %>
+        <span class="card-title"><%= poi.name %></span>
+      </div>
+      <div class="card-content">
+        <p class="card-distance" data-lat="<%= poi.lat %>" data-lon="<%= poi.lon %>" id="card_distance_<%= poi.id %>">&nbsp;</p>
+        <p><%= poi.description %></p>
+      </div>
+      <div class="card-action">
+        <a class="modal-trigger" href="#modal_<%= poi.id %>">See details</a>
+      </div>
+    </div>
+  </div>
+  
