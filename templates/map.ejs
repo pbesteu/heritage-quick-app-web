@@ -36,7 +36,13 @@
     const icon = `/public/maps/leaflet/images/marker-icon-${color}.png`
     <% pois.forEach(function(poi) { %>
         var marker = createCustomIcon([ <%= poi.lat %>, <%= poi.lon %>], '<%= poi.name %>', icon).addTo(poiLayer);
-        marker.bindPopup(`<div class="card small"><div class="card-image"><img src="/public/images/placeholder.jpg"><span class="card-title"><%= poi.name %></span></div><div class="card-content"><p><%= poi.description %></p></div><div class="card-action"><a class="modal-trigger" href="#modal_<%= poi.id %>">Details</a><a onclick="openDirections('<%= poi.lon %>', '<%= poi.lat %>', '<%= poi.name %>')" href="#">Directions</a></div></div>`);
+        <% if (poi.images.length > 0) { %>
+          var imgSrc = "<%= poi.images[0] %>";
+        <% } else { %>
+          var imgSrc = "/public/images/placeholder.jpg";
+        <% } %>
+
+        marker.bindPopup(`<div class="card small"><div class="card-image"><img src="${imgSrc}" alt="<%= poi.name %>"><span class="card-title"><%= poi.name %></span></div><div class="card-content"><p><%= poi.description %></p></div><div class="card-action"><a class="modal-trigger" href="#modal_<%= poi.id %>">Details</a><a onclick="openDirections('<%= poi.lon %>', '<%= poi.lat %>', '<%= poi.name %>')" href="#">Directions</a></div></div>`);
     <% }) %>
 
     map.fitBounds(poiLayer.getBounds());   

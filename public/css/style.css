@@ -39,3 +39,10 @@
 .modal.modal-fixed-footer.modal-detail {
   height: 90%;
 }
+
+.brand-logo {
+  display: inline-block;
+  height: 2em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
