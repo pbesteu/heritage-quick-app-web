@@ -2,8 +2,7 @@
     <div class="card small hoverable">
       <div class="card-image">
         <% if (poi.images.length > 0) { %>
-          <img src="/public/images/placeholder.jpg" alt="Point of interest">
-          <!--img src="<%= poi.images[0] %>" alt="<%= poi.name %>" -->
+          <img src="<%= poi.images[0] %>" alt="<%= poi.name %>">
         <% } else { %>
           <img src="/public/images/placeholder.jpg" alt="Point of interest">
         <% } %>
