@@ -19,11 +19,11 @@ main {
   margin-top: 48px;
 }
 
-#cards {
+#cards .container {
   padding-bottom: 48px;
 }
 
-#osm {
+#osm, #cards {
   height: calc(100vh - 64px - 48px - 48px);
 }
 
@@ -63,9 +63,14 @@ nav .brand-logo {
   padding-left: 1rem;
 }
 
+.modal.modal-detail {
+  background-color: #fafafa;
+  max-height: 90%;
+  height: 90%;
+}
+
 @media only screen and (max-width: 992px) {
   .modal.modal-detail {
-    background-color: #fafafa;
     max-width: 90%;
     width: 90%;
     max-height: 80%;
@@ -96,7 +101,7 @@ nav .brand-logo {
     font-size: small;
   }
 
-  #osm {
+  #osm, #cards {
     height: calc(100vh - 58px - 47px - 32px);
   }
 }

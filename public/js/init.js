@@ -2,9 +2,15 @@
 const myPosition = { lat: 0, lon: 0};
 
 (function($){
+
+  const uaSupportsQuickApp = (ua) => {
+    console.log(ua);
+    return ((ua.indexOf("huawei") >= 0 || ua.indexOf("honor") >= 0) && (ua.indexOf("android") >= 0));
+  }
+
   $(function(){
     $('.sidenav').sidenav();
-    $('.modal').modal({dismissible:false});
+    $('.modal').modal({dismissible:false, startingTop: '5%'});
     $('.tabs').tabs();
 
     if ('geolocation' in navigator) {
@@ -24,6 +30,10 @@ const myPosition = { lat: 0, lon: 0};
     // Opens the dialog by default
     if (modalToOpenAtInit) {
       $(`#modal_${modalToOpenAtInit}`).modal('open');
+    }
+
+    if (uaSupportsQuickApp(navigator.userAgent.toLowerCase())) {
+      $('.quick-app-link').show();
     }
     
   }); // end of document ready

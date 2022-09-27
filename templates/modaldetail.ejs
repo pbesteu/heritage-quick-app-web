@@ -12,12 +12,12 @@
           <span class="card-title activator grey-text text-darken-4"><%= poi.name %><i class="material-icons right">more_vert</i></span>
           <p class="card-distance"><span class="card-distance-value" data-lat="<%= poi.lat %>" data-lon="<%= poi.lon %>" id="card_distance_<%= poi.id %>">&nbsp;</span><%= i18n.t('cards.distance') %></p>
           <p><%= poi.description %></p>
-          <p class="grey-text text-darken-3"><%= poi.description %> </p>
+          <p class="grey-text text-darken-3"><%= poi.more %> </p>
         </div>
         <div class="card-reveal">
           <span class="card-title grey-text text-darken-4"><%= poi.name %><i class="material-icons right">close</i></span>
           <p><%= poi.description %></p>
-          <p><%= poi.more %></p>
+          <p class="grey-text text-darken-3"><%= poi.more %> </p>
           <% if (poi.urls) { %>
             <% poi.urls.forEach(function(url) { %>
               <p><a href="<%= url %>" target="_blank"><%= url %></a></p>
