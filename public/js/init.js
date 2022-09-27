@@ -37,7 +37,7 @@ const myPosition = { lat: 0, lon: 0};
     try {
       const number = parseInt(value);
       if (number > 1000) {
-        return `${(value/1000).toFixed(2)} Kms.`;        
+        return `${(value/1000).toFixed(2)} Km.`;        
       }
     } catch (ex) {
       return ''
@@ -46,7 +46,7 @@ const myPosition = { lat: 0, lon: 0};
   }
 
   function updateDistancePoIs() {
-    $('.card-distance').each((index, obj) => {
+    $('.card-distance-value').each((index, obj) => {
       const distance = window.geolib.getDistance(
         { latitude: myPosition.lat, longitude: myPosition.lon },
         { 
@@ -54,7 +54,7 @@ const myPosition = { lat: 0, lon: 0};
           longitude: obj.getAttribute('data-lon') 
         }
       );
-      $(obj).text(`${prettifyDistance(distance)} from your location`);
+      $(obj).text(`${prettifyDistance(distance)}`);
     });
   }
 

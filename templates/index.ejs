@@ -4,6 +4,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
   <title><% meta.app_title %></title>
+  <link rel="icon" type="image/png" href="/public/favicon.ico">
   <!-- Leaflet -->
   <link href="/public/maps/leaflet/leaflet.css" rel="stylesheet">
   <link href="/public/maps/leaflet-control/L.Control.Locate.min.css" rel="stylesheet">
@@ -21,21 +22,21 @@
         <a href="#" class="brand-logo"><%= meta.app_title %></a>
         <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a class="modal-trigger" href="https://hapjs.org/app/<%= meta.app_id %>">Open Quick App</a></li>
-          <li><a class="modal-trigger" href="#modalabout">About</a></li>
+          <li><a class="modal-trigger" href="https://hapjs.org/app/<%= meta.app_id %>"><%= i18n.t('index.quickapp') %></a></li>
+          <li><a class="modal-trigger" href="#modalabout"><%= i18n.t('index.about') %></a></li>
         </ul>
       </div>
       <div class="nav-content">
         <ul class="tabs tabs-fixed-width tabs-transparent">
-          <li class="tab" id="discovery-step1"><a class="active" href="#cards">Cards</a></li>
-          <li class="tab" id="discovery-step2"><a href="#map">Map</a></li>
+          <li class="tab" id="discovery-step1"><a class="active" href="#cards"><%= i18n.t('index.cards') %></a></li>
+          <li class="tab" id="discovery-step2"><a href="#map"><%= i18n.t('index.map') %></a></li>
         </ul>
       </div>
     </nav>
   </div>
   <ul class="sidenav" id="mobile-demo">
-    <li><a class="modal-trigger" href="https://hapjs.org/app/<%= meta.app_id %>">Open Quick App</a></li>
-    <li><a class="modal-trigger" href="#modalabout">About</a></li>
+    <li><a class="modal-trigger" href="https://hapjs.org/app/<%= meta.app_id %>"><%= i18n.t('index.quickapp') %></a></li>
+    <li><a class="modal-trigger" href="#modalabout"><%= i18n.t('index.about') %></a></li>
   </ul>
 
   <!-- Cards -->
@@ -47,7 +48,7 @@
             <%- include('card', { poi: poi}) %>
           <% }); %>
         </div>
-        <p class="center-align">You have seen all the items 🫠</p>
+        <p class="center-align"><%= i18n.t('cards.end') %></p>
       </div>      
     </div>
   </div>
@@ -78,6 +79,7 @@
     // array of poi identifiers in the global variable
     var identifiers = [];
     var modalToOpenAtInit = null; 
+    
     <% content.pois.forEach(function(poi) { %>
       identifiers.push('<%= poi.id %>');
       <% if (poi.id === identifier) { %>

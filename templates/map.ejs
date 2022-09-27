@@ -42,7 +42,7 @@
           var imgSrc = "/public/images/placeholder.jpg";
         <% } %>
 
-        marker.bindPopup(`<div class="card small"><div class="card-image"><img src="${imgSrc}" alt="<%= poi.name %>"><span class="card-title"><%= poi.name %></span></div><div class="card-content"><p><%= poi.description %></p></div><div class="card-action"><a class="modal-trigger" href="#modal_<%= poi.id %>">Details</a><a onclick="openDirections('<%= poi.lon %>', '<%= poi.lat %>', '<%= poi.name %>')" href="#">Directions</a></div></div>`);
+        marker.bindPopup(`<div class="card small"><div class="card-image"><img src="${imgSrc}" alt="<%= poi.name %>"><span class="card-title"><%= poi.name %></span></div><div class="card-content"><p><%= poi.description %></p></div><div class="card-action"><a class="modal-trigger" href="#modal_<%= poi.id %>"><%= i18n.t('map.details') %></a><a onclick="openDirections('<%= poi.lon %>', '<%= poi.lat %>', '<%= poi.name %>')" href="#"><%= i18n.t('map.directions') %></a></div></div>`);
     <% }) %>
 
     map.fitBounds(poiLayer.getBounds());   

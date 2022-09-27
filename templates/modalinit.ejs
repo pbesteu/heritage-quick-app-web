@@ -1,8 +1,8 @@
 <div id="modalinit" class="modal small">
     <div class="modal-content">
-      <h5>Welcome to <%= meta.app_title %></h5>
+      <h5><%= i18n.t('index.welcome', { title: meta.app_title }) %></h5>
       <p>
-        Finding the interesting places around you... I´m using your location only for that.   
+        <%= i18n.t('index.loading') %>
       </p>
       <div class="progress">
         <div class="indeterminate"></div>

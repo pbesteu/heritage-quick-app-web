@@ -51,4 +51,12 @@
     max-height: 80%;
     height: 80%;
   }
+  .modal.modal-detail .card {
+    height: 450px;
+    margin: 0;
+  }
+  .modal.modal-detail img {
+    min-height: 300px;
+    max-height: 300px;
+  }
 }

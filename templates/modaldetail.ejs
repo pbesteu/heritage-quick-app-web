@@ -5,12 +5,13 @@
           <% if (poi.images.length > 0) { %>
             <img src="<%= poi.images[0] %>" alt="<%= poi.name %>">
           <% } else { %>
-            <img src="/public/images/placeholder.jpg" alt="Point of interest">
+            <img src="/public/images/placeholder.jpg" alt="<%= poi.name %>">
           <% } %>
         </div>
         <div class="card-content">
           <span class="card-title activator grey-text text-darken-4"><%= poi.name %><i class="material-icons right">more_vert</i></span>
-          <p class="card-distance" data-lat="<%= poi.lat %>" data-lon="<%= poi.lon %>" id="detail_card_distance_<%= poi.id %>"></p>
+          <p class="card-distance"><span class="card-distance-value" data-lat="<%= poi.lat %>" data-lon="<%= poi.lon %>" id="card_distance_<%= poi.id %>">&nbsp;</span><%= i18n.t('cards.distance') %></p>
+          <p><%= poi.description %></p>
           <p class="grey-text text-darken-3"><%= poi.description %> </p>
         </div>
         <div class="card-reveal">
@@ -26,6 +27,6 @@
       </div>  
     </div>
     <div class="modal-footer">
-      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat"><%= i18n.t('details.close') %></a>
     </div>
   </div>

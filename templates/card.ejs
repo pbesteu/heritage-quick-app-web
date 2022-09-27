@@ -2,18 +2,19 @@
     <div class="card small hoverable">
       <div class="card-image">
         <% if (poi.images.length > 0) { %>
-          <img src="<%= poi.images[0] %>" alt="<%= poi.name %>">
-        <% } else { %>
           <img src="/public/images/placeholder.jpg" alt="Point of interest">
+          <!--img src="<%= poi.images[0] %>" alt="<%= poi.name %>"-->
+        <% } else { %>
+          <img src="/public/images/placeholder.jpg" alt="<%= poi.name %>">
         <% } %>
         <span class="card-title"><%= poi.name %></span>
       </div>
       <div class="card-content">
-        <p class="card-distance" data-lat="<%= poi.lat %>" data-lon="<%= poi.lon %>" id="card_distance_<%= poi.id %>">&nbsp;</p>
+        <p class="card-distance"><span class="card-distance-value" data-lat="<%= poi.lat %>" data-lon="<%= poi.lon %>" id="card_distance_<%= poi.id %>">&nbsp;</span><%= i18n.t('cards.distance') %></p>
         <p><%= poi.description %></p>
       </div>
       <div class="card-action">
-        <a class="modal-trigger" href="#modal_<%= poi.id %>">See details</a>
+        <a class="modal-trigger" href="#modal_<%= poi.id %>"><%= i18n.t('cards.details') %></a>
       </div>
     </div>
   </div>
