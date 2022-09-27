@@ -36,13 +36,6 @@
   z-index: 1001;
 }
 
-.brand-logo {
-  display: inline-block;
-  height: 2em;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
 @media only screen and (max-width: 992px) {
   .modal.modal-detail {
     background-color: #fafafa;
@@ -59,4 +52,18 @@
     min-height: 300px;
     max-height: 300px;
   }
+  nav .brand-logo {
+    left: 45%;
+    -webkit-transform: translateX(-40%);
+    transform: translateX(-40%);
+    position: absolute;
+    color: #fff;
+    display: inline-block;
+    font-size: 1.5rem;
+    width: 80%;
+    padding: 1px;
+    background-color: brown;
+    text-align: center;
+    text-overflow: ellipsis;    
+  }  
 }
