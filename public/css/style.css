@@ -80,9 +80,6 @@ nav .brand-logo {
     max-height: 300px;
   }
   nav .brand-logo {
-    left: 45%;
-    -webkit-transform: translateX(-40%);
-    transform: translateX(-40%);
     position: absolute;
     color: #fff;
     display: inline-block;
