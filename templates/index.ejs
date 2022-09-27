@@ -20,11 +20,6 @@
     <nav class="nav-extended" style="background-color:<%= content.app.theme.brand %>">
       <div class="nav-wrapper">
         <a href="#" class="brand-logo"><%= meta.app_title %></a>
-        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a class="modal-trigger" href="https://hapjs.org/app/<%= meta.app_id %>"><%= i18n.t('index.quickapp') %></a></li>
-          <li><a class="modal-trigger" href="#modalabout"><%= i18n.t('index.about') %></a></li>
-        </ul>
       </div>
       <div class="nav-content">
         <ul class="tabs tabs-fixed-width tabs-transparent">
@@ -34,10 +29,6 @@
       </div>
     </nav>
   </div>
-  <ul class="sidenav" id="mobile-demo">
-    <li><a class="modal-trigger" href="https://hapjs.org/app/<%= meta.app_id %>"><%= i18n.t('index.quickapp') %></a></li>
-    <li><a class="modal-trigger" href="#modalabout"><%= i18n.t('index.about') %></a></li>
-  </ul>
 
   <!-- Cards -->
   <div id="cards" class="col s12">
@@ -59,6 +50,8 @@
   </div>
   <!-- end Map -->
 
+  <%- include('footer') %>
+  
   <!-- Modal with details -->
   <% content.pois.forEach(function(poi) { %>
     <%- include('modaldetail', { poi: poi }); %>
