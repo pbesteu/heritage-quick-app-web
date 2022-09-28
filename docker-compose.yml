@@ -1,0 +1,15 @@
+version: '3'
+services:
+  app:
+    build: .
+    volumes:
+      - /usr/src/app/node_modules
+    container_name: docker-heritage-web
+    restart: always
+    working_dir: /usr/src/app    
+    environment:
+      - PORT:3000
+      - env:production
+    ports:
+      - 3003:3000
+    command: npm run start
