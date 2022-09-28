@@ -46,23 +46,24 @@ The app requires the following parameters:
 
 ## Examples
 
-### Eckernförde (Germany) Street Heritage in English:
+Eckernförde (Germany) Street Heritage in English:
 
 [`http://localhost:3000/?url=https://pbest.eu/cultural-heritage-quick-app/de/eckernforde/data.json`](https://localhost:3000/?url=http://pbest.eu/cultural-heritage-quick-app/de/eckernforde/data.json)
 
-### Leuven (Belgium) Cultural Heritage in English:
+Leuven (Belgium) Cultural Heritage in English:
 
 [`http://localhost:3000/?url=https://pbest.eu/cultural-heritage-quick-app/be/leuven/data.json`](https://localhost:3000?url=http://pbest.eu/cultural-heritage-quick-app/be/leuven/data.json)
 
-### Eckernförde (Germany) Street Heritage in German:
+Eckernförde (Germany) Street Heritage in German:
 
 [`http://localhost:3000/de?url=https://pbest.eu/cultural-heritage-quick-app/de/eckernforde/data.json`](https://localhost:3000/de?url=http://pbest.eu/cultural-heritage-quick-app/de/eckernforde/data.json)
 
-### Select a statue (Rembert Dodoens) in Leuven Culture Heritage database:
+Select a statue (Rembert Dodoens) in Leuven Culture Heritage database:
 
 [`http://localhost:3000/?url=https://pbest.eu/cultural-heritage-quick-app/be/leuven/data.json&id=dodoens`](http://localhost:3000/?url=http://pbest.eu/cultural-heritage-quick-app/be/leuven/data.json&id=dodoens)
 
-### Select a building  (Rembert Dodoens) in the Eckernförde (Germany) Street Heritage project in German:
+
+Select a building  (Rembert Dodoens) in the Eckernförde (Germany) Street Heritage project in German:
 
 [`http://localhost:3000/de?url=https://pbest.eu/cultural-heritage-quick-app/de/eckernforde/data.json&id=7096`](http://localhost:3000/de?url=https://pbest.eu/cultural-heritage-quick-app/de/eckernforde/data.json&id=7096)
 
