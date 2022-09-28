@@ -5,7 +5,8 @@ module.exports = {
         quickapp: 'QuickApp',
         about: 'About',
         welcome: 'Welcome to %{title}',
-        loading: 'Finding the interesting places around you... I\'m using your location only for that.',
+        loading: 'Finding the interesting places around you...',
+        feedback: 'Comments?',
     },
     cards: {
         end: 'You have seen all the items 🫠',

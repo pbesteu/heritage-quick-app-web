@@ -59,6 +59,11 @@ footer.page-footer div {
   margin: 0;
 }
 
+footer.page-footer a {
+  color: #fafafa;
+  text-transform: uppercase;
+}
+
 nav .brand-logo {
   padding-left: 1rem;
 }
