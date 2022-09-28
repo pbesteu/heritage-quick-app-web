@@ -74,6 +74,5 @@ const myPosition = { lat: 0, lon: 0};
     });
   }
 
-
 })(jQuery); // end of jQuery name space
 

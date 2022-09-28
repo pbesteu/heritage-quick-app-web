@@ -1,5 +1,14 @@
 'use strict'
 
+//const trackingUrl = `http://${this.manifest.package}/v${this.manifest.versionCode}/${page}`
+function track(matomoBaseUrl, trackingUrl) {
+  if (!matomoBaseUrl) { return false }
+  const fetch = require('cross-fetch');
+  const random = String(Math.floor(Math.random()*1000)).padStart(4, '0');
+  let matomoUrl = matomoBaseUrl + `&rand=${random}&action_name=web&url=${trackingUrl}`
+  matomoUrl += `&_id=${String(Math.floor(Math.random()*10000000000000000)).padStart(16, '0')}`
+  fetch(matomoUrl)
+}
 
 module.exports = async function (fastify, opts) {
 
@@ -24,7 +33,6 @@ module.exports = async function (fastify, opts) {
       }
     }
   }
-  
   fastify.get('/:locale', options, async (request, reply) => {
     const { url, id } = request.query;
     const { locale } = request.params;
@@ -65,6 +73,9 @@ module.exports = async function (fastify, opts) {
         // By default, it will serve 'en' or the first locale found
         templateParams.content = availableLocalesDatabase.includes('en')? json.content['en'] : json.content[Object.keys(json.content)[0]];
       }
+      // Send tracking call 
+      track(json.meta.matomo_base_url, url);
+
       return reply.view('/templates/index.ejs', templateParams);
     } catch (err) {
       return reply.view('/templates/error.ejs', { 
