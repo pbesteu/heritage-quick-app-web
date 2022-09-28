@@ -25,15 +25,14 @@ const myPosition = { lat: 0, lon: 0};
         myPosition.lat = position.coords.latitude;
         myPosition.lon = position.coords.longitude
         updateDistancePoIs();
+        // Opens the dialog by default
+        if (modalToOpenAtInit) {
+          $(`#modal_${modalToOpenAtInit}`).modal('open');
+        }
       });
     } else {
       /* geolocation IS NOT available */
       console.error('geolocation IS NOT available')
-    }
-
-    // Opens the dialog by default
-    if (modalToOpenAtInit) {
-      $(`#modal_${modalToOpenAtInit}`).modal('open');
     }
 
     if (uaSupportsQuickApp(navigator.userAgent.toLowerCase())) {
