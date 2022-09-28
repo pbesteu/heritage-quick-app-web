@@ -3,19 +3,20 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <title><%= i18n.t('error.error') %></title>
+  <title><%= i18n.t('app.title') %> (<%= i18n.t('error.error') %>)</title>
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="/public/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="/public/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="/public/css/error.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
 <body>
-  <div class="container">
-    <%= message %>
+  <div class="cover">
+    <div class="container right-align">
+      <h1 class="white-text"><%= i18n.t('app.title') %></h1>
+      <p class="flow-text lime-text text-lighten-4"><%= i18n.t('error.something_wrong') %>:<br><%= message %></p>
+    </div>  
   </div>
-
-
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="public/js/materialize.min.js"></script>

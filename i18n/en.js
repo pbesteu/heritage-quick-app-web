@@ -1,4 +1,7 @@
 module.exports = {
+    app: {
+        title: 'Local Heritage App',
+    },
     index : {
         map: 'Map',
         cards: 'Cards',
@@ -30,6 +33,8 @@ module.exports = {
         directions: 'Directions',    },
     error: {
         error: 'Error',
+        something_wrong: 'ehem... Something is wrong',
     },
+    attributions: 'Error cover photo by Ricardo Gomez Angel on Unsplash',
     by: 'Powered by Quick App Initiative',
 }
