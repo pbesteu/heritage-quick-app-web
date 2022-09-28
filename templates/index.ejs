@@ -49,8 +49,6 @@
     <%- include('map', { pois: content.pois, color: 'red' }); %>
   </div>
   <!-- end Map -->
-
-  <%- include('footer') %>
   
   <!-- Modal with details -->
   <% content.pois.forEach(function(poi) { %>
@@ -61,6 +59,8 @@
   <!-- About Modal -->
   <%- include('about', { content: content, meta: meta }) %>
   <%- include('modalinit', { meta: meta }) %>
+  
+  <%- include('footer') %>
   
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>

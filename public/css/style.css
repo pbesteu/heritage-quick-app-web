@@ -38,6 +38,12 @@ main {
   font-size: smaller;
 }
 
+.cover {
+  background-image: url("/public/images/background.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;    
+}
 
 .sidenav {
   z-index: 1001;
@@ -68,12 +74,6 @@ nav .brand-logo {
   padding-left: 1rem;
 }
 
-.modal.modal-detail {
-  background-color: #fafafa;
-  max-height: 90%;
-  height: 90%;
-}
-
 ul.tabs {
   overflow-x: hidden;
 }
@@ -88,22 +88,13 @@ ul.tabs {
   height: calc(100vh - 64px - 48px - 48px);
 }
 
+.modal.modal-detail .card image {
+  max-height: 50%;
+  height: 50%;
+}
+
 
 @media only screen and (max-width: 992px) {
-  .modal.modal-detail {
-    max-width: 90%;
-    width: 90%;
-    max-height: 80%;
-    height: 80%;
-  }
-  .modal.modal-detail .card {
-    height: 450px;
-    margin: 0;
-  }
-  .modal.modal-detail img {
-    min-height: 300px;
-    max-height: 300px;
-  }
   nav .brand-logo {
     position: absolute;
     color: #fff;
@@ -136,4 +127,44 @@ ul.tabs {
   #osm, #cards {
     height: calc(100vh - 58px - 46px - 32px);
   } 
+}
+
+/* Modals with the details */
+
+.modal.modal-detail {
+  background-color: #fafafa;
+  width: 50%;
+  max-width: 600px;
+}
+
+#modalinit {
+  top: 15% !important;
+  height: 60%;
+}
+
+#modalinit h5,
+#modalinit p {
+  margin: 0;
+}
+
+
+@media only screen and (max-width: 992px) {
+  .modal.modal-detail {
+    width: 75%;
+  }
+  #modalinit {
+    top: 5% !important;
+    height: 90%;
+  }  
+  #modalabout {
+    top: 5% !important;
+    height: 90%;
+  }  
+}
+
+@media only screen and (max-width: 600px) {
+  .modal.modal-detail {
+    width: 95%;
+    top: 1% !important;
+  }
 }

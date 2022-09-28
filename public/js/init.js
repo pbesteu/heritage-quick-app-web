@@ -14,7 +14,10 @@ const myPosition = { lat: 0, lon: 0};
   
   $(function(){
     $('.sidenav').sidenav();
-    $('.modal').modal({dismissible:false, startingTop: '5%'});
+    $('.modal-detail').modal({dismissible:true});
+    $('#modalinit').modal({dismissible:false, opacity: 0.8, startingTop: '40%'});
+    $('#modalabout').modal({dismissible:false});
+    
     $('.tabs').tabs({ onShow: invalidateSizeMap} );
 
     if ('geolocation' in navigator) {

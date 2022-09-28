@@ -1,11 +1,8 @@
 <footer class="page-footer grey darken-3 z-depth-2">
   <div class="row">
-    <div class="col s4 left-align">
-      <a class="quick-app-link" href="https://hapjs.org/app/<%= meta.app_id %>"><%= i18n.t('index.quickapp') %></a>
-    </div>
-    <div class="col s4 center">
-      <a href="<%= content.app.issue_url %>" target="_blank"><%= i18n.t('index.feedback') %></a>
-    <div class="col s4 center">
+    <div class="col s12 right-align">
+      <a class="quick-app-link" href="https://hapjs.org/app/<%= meta.app_id %>"><%= i18n.t('index.quickapp') %></a>&nbsp;
+      <a href="<%= content.app.issue_url %>" target="_blank"><%= i18n.t('index.feedback') %></a> &nbsp; | &nbsp;
       <a class="modal-trigger" href="#modalabout"><%= i18n.t('index.about') %></a>
     </div>
   </div>
