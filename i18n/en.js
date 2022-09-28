@@ -34,6 +34,7 @@ module.exports = {
     error: {
         error: 'Error',
         something_wrong: 'ehem... Something is wrong',
+        go_home: "Read more info about this project",
     },
     attributions: 'Error cover photo by Ricardo Gomez Angel on Unsplash',
     by: 'Powered by Quick App Initiative',
