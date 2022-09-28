@@ -19,16 +19,7 @@ main {
   margin-top: 48px;
 }
 
-#cards .container {
-  padding-bottom: 48px;
-}
-
-div#osm {
-  height: calc(100vh - 64px - 48px - 48px);
-}
-
-div#cards {
-  height: calc(100vh - 64px - 48px - 48px);
+#cards {
   overflow-y: scroll;
 }
 
@@ -38,15 +29,14 @@ div#cards {
 }
 
 .card-content .card-distance {
-  margin-top: 0;
-  font-size: 80%;
+  margin-top: -1em;
+  font-size: smaller;
   color: darkgrey;
 }
 
 .sidenav {
   z-index: 1001;
 }
-
 
 footer.page-footer {
   position: fixed;
@@ -77,6 +67,17 @@ nav .brand-logo {
 ul.tabs {
   overflow-x: hidden;
 }
+
+.card.small .card-image, 
+.card.medium .card-image, 
+.card.large .card-image {
+  max-height: 55%;
+}
+
+#osm, #cards {
+  height: calc(100vh - 64px - 48px - 48px);
+}
+
 
 @media only screen and (max-width: 992px) {
   .modal.modal-detail {
@@ -113,4 +114,19 @@ ul.tabs {
   #osm, #cards {
     height: calc(100vh - 58px - 47px - 32px);
   }
+
+  .card-content p {
+    font-size: smaller;
+  }
+  .card .card-content {
+    padding: 14px 24px;
+    text-overflow: ellipsis;
+  }  
+  
+}
+
+@media only screen and (max-width: 600px) {
+  #osm, #cards {
+    height: calc(100vh - 58px - 46px - 32px);
+  } 
 }
