@@ -23,8 +23,13 @@ main {
   padding-bottom: 48px;
 }
 
-#osm, #cards {
+div#osm {
   height: calc(100vh - 64px - 48px - 48px);
+}
+
+div#cards {
+  height: calc(100vh - 64px - 48px - 48px);
+  overflow-y: scroll;
 }
 
 .card-detail {
@@ -67,6 +72,10 @@ nav .brand-logo {
   background-color: #fafafa;
   max-height: 90%;
   height: 90%;
+}
+
+ul.tabs {
+  overflow-x: hidden;
 }
 
 @media only screen and (max-width: 992px) {

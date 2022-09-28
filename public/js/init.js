@@ -8,10 +8,15 @@ const myPosition = { lat: 0, lon: 0};
     return ((ua.indexOf("huawei") >= 0 || ua.indexOf("honor") >= 0) && (ua.indexOf("android") >= 0));
   }
 
+  // to avoid malfunction of map once it´s resized
+  function invalidateSizeMap() {
+    map.invalidateSize();
+  };
+  
   $(function(){
     $('.sidenav').sidenav();
     $('.modal').modal({dismissible:false, startingTop: '5%'});
-    $('.tabs').tabs();
+    $('.tabs').tabs({ onShow: invalidateSizeMap} );
 
     if ('geolocation' in navigator) {
       $('#modalinit').modal('open');
