@@ -14,9 +14,9 @@ const myPosition = { lat: 0, lon: 0};
   
   $(function(){
     $('.sidenav').sidenav();
-    $('.modal-detail').modal({dismissible:true});
-    $('#modalinit').modal({dismissible:false, opacity: 0.8, startingTop: '40%'});
-    $('#modalabout').modal({dismissible:false});
+    $('.modal-detail').modal({dismissible:true, preventScrolling: true});
+    $('#modalinit').modal({dismissible:false, opacity: 0.8, preventScrolling: true});
+    $('#modalabout').modal({dismissible:false, preventScrolling: true});
     
     $('.tabs').tabs({ onShow: invalidateSizeMap} );
 
