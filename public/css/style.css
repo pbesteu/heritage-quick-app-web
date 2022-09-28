@@ -34,6 +34,11 @@ main {
   color: darkgrey;
 }
 
+.card-content p {
+  font-size: smaller;
+}
+
+
 .sidenav {
   z-index: 1001;
 }
@@ -115,9 +120,6 @@ ul.tabs {
     height: calc(100vh - 58px - 47px - 32px);
   }
 
-  .card-content p {
-    font-size: smaller;
-  }
   .card .card-content {
     padding: 14px 24px;
     text-overflow: ellipsis;

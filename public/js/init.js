@@ -4,7 +4,6 @@ const myPosition = { lat: 0, lon: 0};
 (function($){
 
   const uaSupportsQuickApp = (ua) => {
-    console.log(ua);
     return ((ua.indexOf("huawei") >= 0 || ua.indexOf("honor") >= 0) && (ua.indexOf("android") >= 0));
   }
 
@@ -39,6 +38,8 @@ const myPosition = { lat: 0, lon: 0};
 
     if (uaSupportsQuickApp(navigator.userAgent.toLowerCase())) {
       $('.quick-app-link').show();
+    } else {
+      $('.quick-app-link').hide();
     }
     
   }); // end of document ready
@@ -72,6 +73,7 @@ const myPosition = { lat: 0, lon: 0};
       $(obj).text(`${prettifyDistance(distance)}`);
     });
   }
+
 
 })(jQuery); // end of jQuery name space
 

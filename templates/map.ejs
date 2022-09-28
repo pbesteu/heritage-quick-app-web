@@ -15,10 +15,11 @@
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 
-    function createCustomIcon (latlng, title, iconUrl) {
+    function createCustomIconMarker (latlng, title, iconUrl) {
       let myIcon = L.icon({
         iconUrl: iconUrl,
         title: title,
+        alt: title,
         iconSize: [28, 41],
         iconAnchor: [14, 40],
         popupAnchor: [0, -41]
@@ -34,15 +35,15 @@
     }
 
     const icon = `/public/maps/leaflet/images/marker-icon-${color}.png`
-    <% pois.forEach(function(poi) { %>
-        var marker = createCustomIcon([ <%= poi.lat %>, <%= poi.lon %>], '<%= poi.name %>', icon).addTo(poiLayer);
-        <% if (poi.images.length > 0) { %>
-          var imgSrc = "<%= poi.images[0] %>";
-        <% } else { %>
-          var imgSrc = "/public/images/placeholder.jpg";
-        <% } %>
-
-        marker.bindPopup(`<div class="card small"><div class="card-image"><img src="${imgSrc}" alt="<%= poi.name %>"><span class="card-title"><%= poi.name %></span></div><div class="card-content"><p><%= poi.description %></p></div><div class="card-action"><a class="modal-trigger" href="#modal_<%= poi.id %>"><%= i18n.t('map.details') %></a><a onclick="openDirections('<%= poi.lon %>', '<%= poi.lat %>', '<%= poi.name %>')" href="#"><%= i18n.t('map.directions') %></a></div></div>`);
+    // The array with all the markers
+    var markers = [];
+    // A dictionary with the markers ("uniqueID" : "position in the markers array")
+    var mapMarkers = {};
+    <% pois.forEach(function(poi, index) { %>
+        var marker = createCustomIconMarker([<%= poi.lat %>,<%= poi.lon %>],'<%= poi.name %>',icon).addTo(poiLayer);
+        marker.bindPopup(`<div class="card"><div class="card-image"><img src="<% if (poi.images.length > 0) { %><%= poi.images[0] %><% } else { %>/public/images/placeholder.jpg<% } %>" alt="<%= poi.name %>"><span class="card-title"><%= poi.name %></span></div><div class="card-content"><p><%= poi.description %></p></div><div class="card-action"><a class="modal-trigger" href="#modal_<%= poi.id %>"><%= i18n.t('map.details') %></a><a onclick="openDirections('<%= poi.lon %>', '<%= poi.lat %>', '<%= poi.name %>')" href="#"><%= i18n.t('map.directions') %></a></div></div>`);
+        markers.push(marker);
+        mapMarkers['<%= poi.id %>'] = <%=index%>;
     <% }) %>
 
     map.fitBounds(poiLayer.getBounds());   
@@ -51,4 +52,13 @@
       showCompass: true
     }).addTo(map);
 
+    function openMapOn(identifier) {
+      // Select "map" tab
+      var instanceTabs = M.Tabs.getInstance($('.tabs'));
+      instanceTabs.select('map');
+      // Open the popup of the marker with id = marker
+      if (identifier in mapMarkers) {
+        markers[mapMarkers[identifier]].openPopup();
+      }
+    }
 </script>

@@ -8,8 +8,9 @@ module.exports = {
         loading: 'Interessante Orte in Ihrer Umgebung finden... Ich verwende Ihren Standort nur dafür.',
     },
     cards: {
-        end: 'Du hast alle Artikel gesehen 🫠',
+        end: 'Du hast alle artikel gesehen 🫠',
         details: 'Einzelheiten',
+        on_map: 'Ort',
         distance: ' von deinem standort',
     },
     details: {

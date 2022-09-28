@@ -10,6 +10,7 @@ module.exports = {
     cards: {
         end: 'You have seen all the items 🫠',
         details: 'Details',
+        on_map: 'Location',
         distance: ' from your location',
     },
     details: {
