@@ -1,0 +1,33 @@
+
+<div id="modal_detail" class="modal-detail modal modal-fixed-footer">
+  <div class="modal-content valign-wrapper">
+    <div class="card card-detail">
+      <div class="card-image waves-effect waves-block waves-light">
+        <img src="/public/images/placeholder.jpg" alt="Point of interest">
+      </div>
+      <div class="card-content">
+        <span class="card-title activator grey-text text-darken-4 truncate">
+          <span class="modal-detail-name">NAME</span>
+          <i class="material-icons right">more_vert</i>
+        </span>
+        <p class="card-distance">
+          <span class="card-distance-value">&nbsp;</span> <%= i18n.t('cards.distance') %></p>
+        <p class="card-description"></p>
+        <p class="grey-text text-darken-3 card-description-more"></p>
+      </div>
+      <div class="card-reveal">
+        <span class="card-title grey-text text-darken-4">
+          <span class="modal-detail-name">NAME</span>
+          <i class="material-icons right">close</i>
+        </span>
+        <p class="card-description"></p>
+        <p class="grey-text text-darken-3 card-description-more"></p>
+        <ul class="links">
+        </ul>
+      </div>
+    </div>  
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-close waves-effect waves-green btn-flat"><%= i18n.t('details.close') %></a>
+  </div>
+</div>

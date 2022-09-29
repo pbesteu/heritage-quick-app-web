@@ -1,9 +1,11 @@
 <script>
-// beginning of jQuery name space
-(function($){  
 
+  var CARDS_CONTAINER_ID = 'card-list'; 
+  var MAPS_CONTAINER_ID = 'osm'; 
+  var DETAILS_MODAL_ID = 'modal_detail'; 
+ 
   // Global variables
-  const myPosition = { lat: 0, lon: 0};
+  var myPosition = { lat: 0, lon: 0};
   var pois = [];
   
   // Populate all the pois into the global "pois" variable    
@@ -12,7 +14,7 @@
   /**
    * Creates a list of cards within the containerId
    */  
-  function createCardList(containerId, poi) {
+  function createCard(containerId, poi) {
     $( `#${containerId}` )
       .append( $( "<div class='col s12 m6 l4 xl3'>" )
         .append( $( "<div class='card small hoverable'></div>" )
@@ -21,14 +23,16 @@
               .attr( "src" , ((poi.images.length) > 0)? poi.images[0] : "/public/images/placeholder.jpg")
               .attr( "alt" , poi.name )
             )
+            .append( $( "<span class='card-title'></span>" ).text(poi.name) )
           )
           .append( $( "<div class='card-content'></div>" )
             .append( $( "<p class='card-distance'></p>" ).text(`${prettifyDistance(poi.distance)}`) )
             .append( $( "<p></p>" ).text(poi.description) )
           )
           .append( $( "<div class='card-action'></div>" )
-            .append( $( "<a class='modal-trigger'></a>" )
-              .attr( "href", `#modal_${poi.id}` )
+            .append( $( "<a></a>" )
+              .attr( "href", `#` )
+              .attr( "onclick", `populateOpenDetailDialog('${poi.id}')` )
               .text( "<%= i18n.t('cards.details') %>" )
             )
             .append( $( "<a href='#'></a>" )
@@ -69,6 +73,49 @@
     });
   }
 
+    /**
+   * Includes the information of the current selected POI in the 
+   * details dialog. And open the dialog.
+   */ 
+   function populateOpenDetailDialog(poiId) {
+    var poi = pois.find( el => el.id === poiId );
+    if (!poi) return;
+    // The image
+    if (poi.images.length > 0) {
+      $( `#${DETAILS_MODAL_ID} img` ).attr("src" , poi.images[0]).attr("alt", poi.name);
+    } else {
+      $( `#${DETAILS_MODAL_ID} img`).attr("src" , "/public/images/placeholder.jpg").attr("alt", poi.name);
+    }
+    // title
+    $( `#${DETAILS_MODAL_ID} .modal-detail-name` ).text( poi.name );
+    // distance
+    $( `#${DETAILS_MODAL_ID} .card-distance-value` ).text( poi.distance );
+    // descriptions
+    $( `#${DETAILS_MODAL_ID} .card-description` ).text( poi.description );
+    $( `#${DETAILS_MODAL_ID} .card-description-more` ).text( poi.more );
+    // Links
+    $( `#${DETAILS_MODAL_ID} .links` ).remove( "li" );
+    if (poi.urls && poi.urls.length>0) {
+      poi.urls.forEach(url => {
+        $( `#${DETAILS_MODAL_ID} .links` )
+          .append( $( "<li></li>" )
+            .append( $( "<a></a>" ).attr( "href", url ).text(url) ) 
+          );    
+      });
+    }
+    $( `#${DETAILS_MODAL_ID}` ).modal('open');
+  }
+
+  /**
+   * Checks if the app must open the dialog with a POI at init.
+   * Opens the modal if the ID is passed and found in the POI list
+   */
+  function openModalIdAtInit() {
+    var identifier = "<%= identifier %>";
+    populateOpenDetailDialog(identifier);
+    // Otherwise do nothing
+  }
+
   // Document on ready
   $(function(){
 
@@ -82,14 +129,11 @@
         myPosition.lat = position.coords.latitude;
         myPosition.lon = position.coords.longitude
         updateDistancePoIs();
-        console.log(pois)
         pois.forEach((poi) => {
-          createCardList('card-list', poi);
+          createCard(CARDS_CONTAINER_ID, poi);
         });
-              // Opens the dialog by default
-        if (modalToOpenAtInit) {
-          $(`#modal_${modalToOpenAtInit}`).modal('open');
-        }
+        // Opens the dialog by default
+        openModalIdAtInit();
       });
     } else {
       /* geolocation IS NOT available */
@@ -113,15 +157,12 @@
     try {
       const number = parseInt(value);
       if (number > 1000) {
-        return `${(value/1000).toFixed(2)} Km.`;        
+        return `${(value/1000).toFixed(2)} Km. <%= i18n.t('cards.distance') %>`;        
       }
     } catch (ex) {
       return '';
     }
-    return `${value} m.`;        
+    return `${value} m. <%= i18n.t('cards.distance') %>`;        
   }
-
-
-})(jQuery); // end of jQuery name space
 
 </script>

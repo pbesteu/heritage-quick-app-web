@@ -42,21 +42,19 @@
     </div>
   </div>
   <!-- end Cards -->
+
   <!-- Map -->
   <div id="map" class="col s12">
-    <%- include('map', { pois: content.pois, color: 'red' }); %>
+    <div id="osm"></div>
   </div>
   <!-- end Map -->
   
   <!-- Modal with details -->
-  <% content.pois.forEach(function(poi) { %>
-    <%- include('modaldetail', { poi: poi }); %>
-  <% }); %>
-  <!-- End Modal -->
-
+  <%- include('modal/detail'); %>  
   <!-- About Modal -->
-  <%- include('about', { content: content, meta: meta }) %>
-  <%- include('modalinit', { meta: meta }) %>
+  <%- include('modal/about', { content: content, meta: meta }) %>
+  <!-- Init Modal -->
+  <%- include('modal/init', { meta: meta }) %>
   
   <%- include('footer') %>
   
@@ -65,18 +63,11 @@
   <script src="/public/js/materialize.min.js"></script>
   <script src="/public/js/geolib.js"></script>  
   <%- include('scripts', { pois: content.pois } ) %>
+  <%- include('map', { pois: content.pois, color: 'red' }); %>
 
   <script>
     // array of poi identifiers in the global variable
     var identifiers = [];
-    var modalToOpenAtInit = null; 
-    
-    <% content.pois.forEach(function(poi) { %>
-      identifiers.push('<%= poi.id %>');
-      <% if (poi.id === identifier) { %>
-        modalToOpenAtInit = '<%= identifier %>';
-      <% } %>
-    <% }); %>
   </script>
 
   </body>
