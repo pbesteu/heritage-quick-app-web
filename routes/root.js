@@ -44,7 +44,7 @@ module.exports = async function (fastify, opts) {
         throw new Error(`Bad response from server fetching the app document: ${url}`);
       }
       const json = await res.json();
-
+      
       // Check the locale in the param (checks if there is a i18n resource with that locale)
       const availableLocalesServer = Object.keys(fastify.i18n.locales);
       const availableLocalesDatabase = Object.keys(json.content);
@@ -77,7 +77,6 @@ module.exports = async function (fastify, opts) {
       }
       // Send tracking call 
       track(json.meta.matomo_base_url, url);
-
       return reply.view('/templates/index.ejs', templateParams);
     } catch (err) {
       return reply.view('/templates/error.ejs', { 

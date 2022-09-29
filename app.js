@@ -21,6 +21,12 @@ module.exports = async function (fastify, opts) {
     },
   });
 
+  // To work with the SW in /public scope
+  fastify.addHook('preHandler', (req, reply, done) => {
+    reply.header('Service-Worker-Allowed', '/')
+    done()
+  })
+
   fastify.register(require('fastify-polyglot'), {
     defaultLocale: 'en',
     localesPath: path.join(__dirname, './i18n')
