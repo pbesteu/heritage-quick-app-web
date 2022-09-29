@@ -37,12 +37,14 @@
     var markers = [];
     // A dictionary with the markers ("uniqueID" : "position in the markers array")
     var mapMarkers = {};
-    <% pois.forEach(function(poi, index) { %>
-        var marker = createCustomIconMarker([<%= poi.lat %>,<%= poi.lon %>],'<%= poi.name %>',icon).addTo(poiLayer);
-        marker.bindPopup(`<div class="card"><div class="card-image"><img src="<% if (poi.images.length > 0) { %><%= poi.images[0] %><% } else { %>/public/images/placeholder.jpg<% } %>" alt="<%= poi.name %>"><span class="card-title"><%= poi.name %></span></div><div class="card-content"><p><%= poi.description %></p></div><div class="card-action"><a href="#" onclick="populateOpenDetailDialog('<%= poi.id %>')"><%= i18n.t('map.details') %></a><a onclick="openDirections('<%= poi.lon %>', '<%= poi.lat %>', '<%= poi.name %>')" href="#"><%= i18n.t('map.directions') %></a></div></div>`);
-        markers.push(marker);
-        mapMarkers['<%= poi.id %>'] = <%=index%>;
-    <% }) %>
+    
+    pois.forEach(function(poi, index) {
+      var marker = createCustomIconMarker([poi.lat,poi.lon], poi.name, icon).addTo(poiLayer);
+      var image = (poi.images.length > 0)? poi.images[0] : '/public/images/placeholder.jpg';
+      marker.bindPopup(`<div class="card"><div class="card-image"><img src="${image}" alt="${poi.name}"><span class="card-title">${poi.name}</span></div><div class="card-content"><p>${poi.description}</p></div><div class="card-action"><a href="#" onclick="populateOpenDetailDialog('${poi.id}')"><%= i18n.t('map.details') %></a><a onclick="openDirections('${poi.lon}', '${poi.lat}', '${poi.name}')" href="#"><%= i18n.t('map.directions') %></a></div></div>`);
+      markers.push(marker);
+      mapMarkers[`${poi.id}`] = index;
+    })
 
     map.fitBounds(poiLayer.getBounds());   
     L.control.locate({
