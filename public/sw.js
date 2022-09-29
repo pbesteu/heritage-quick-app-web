@@ -3,7 +3,6 @@
 const cacheName = 'appcache';
 const cachedFiles = [
   '/public/images/background.jpg',
-  '/public/images/background.jpg',
   '/public/images/placeholder.jpg'
 ];
 
