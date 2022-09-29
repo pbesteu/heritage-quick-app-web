@@ -1,6 +1,9 @@
 module.exports = {
     app: {
         title: 'Local Heritage App',
+        quickapp: 'Would you like to try the Quick App version?',
+        okay: 'Yes, open it!',
+        no: 'No',
     },
     index : {
         map: 'Map',

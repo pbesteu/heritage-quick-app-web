@@ -1,0 +1,14 @@
+<% if (meta.app_id) { %>
+<div id="modal-quickapp" class="modal">
+    <div class="modal-content">
+    <h5><%= meta.app_title %></h5>
+    <p>
+        <%= i18n.t('app.quickapp') %>
+    </p>
+    </div>
+    <div class="modal-footer">
+        <a href="https://hapjs.org/app/<%= meta.app_id %>" class="waves-effect btn-flat"><%= i18n.t('app.okay') %></a>
+        <a href="#!" class="modal-close waves-effect btn-flat"><%= i18n.t('app.no') %></a>
+    </div>     
+</div>
+<% } %>

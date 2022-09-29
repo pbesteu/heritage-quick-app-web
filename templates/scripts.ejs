@@ -61,6 +61,7 @@
   // Init materialize components once the page is loaded
   function initMaterializeComponents() {
     $('.sidenav').sidenav();
+    $('#modal-quickapp').modal({dismissible:false, preventScrolling: true});
     $('.modal-detail').modal({dismissible:true, preventScrolling: true});
     $('#modalinit').modal({dismissible:false, opacity: 0.8, preventScrolling: true});
     $('#modalabout').modal({dismissible:false, preventScrolling: true});
@@ -155,6 +156,15 @@
     return `${value} m. <%= i18n.t('cards.distance') %>`;        
   }
 
+  function showQuickAppOptions() {
+    if (uaSupportsQuickApp(navigator.userAgent.toLowerCase())) {
+      $('.quick-app-link').show();
+      $('#modal-quickapp').modal('open');
+    } else {
+      $('.quick-app-link').hide();
+    }
+  }
+
   /** 
    * Document on ready
    */ 
@@ -173,18 +183,13 @@
         createCardList(CARDS_CONTAINER_ID, pois);
         // Opens the dialog by default
         openModalIdAtInit();
+        showQuickAppOptions();
       });
     } else {
       /* geolocation IS NOT available */
       console.error('geolocation IS NOT available')
     }
 
-    if (uaSupportsQuickApp(navigator.userAgent.toLowerCase())) {
-      $('.quick-app-link').show();
-    } else {
-      $('.quick-app-link').hide();
-    }
-    
   }); // end of document ready
 
 </script>

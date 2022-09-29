@@ -50,11 +50,13 @@
   <!-- end Map -->
   
   <!-- Modal with details -->
-  <%- include('modal/detail'); %>  
+  <%- include('modal/detail') %>  
   <!-- About Modal -->
   <%- include('modal/about', { content: content, meta: meta }) %>
   <!-- Init Modal -->
   <%- include('modal/init', { meta: meta }) %>
+  <!-- Modal for quick app -->
+  <%- include('modal/quickapp', { meta: meta }) %> 
   
   <%- include('footer') %>
   
