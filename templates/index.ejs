@@ -16,11 +16,7 @@
   <link href="/public/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="/public/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <!-- Service worker registration -->
-  <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/public/sw.js');
-    }
- </script>    
+  <%- include('service-worker') %>
 </head>
 <body>
   <div class="navbar-fixed"> 
