@@ -152,7 +152,8 @@ ul.tabs {
 
 
 @media only screen and (max-width: 992px) {
-  .modal.modal-detail {
+  .modal.modal-detail,
+  .modal#modalabout {
     width: 70%;
     max-width: 600px;
     height: 90%;
@@ -163,14 +164,11 @@ ul.tabs {
     top: 5% !important;
     height: 90%;
   }  
-  #modalabout {
-    top: 5% !important;
-    height: 90%;
-  }  
 }
 
 @media only screen and (max-width: 600px) {
-  .modal.modal-detail {
+  .modal.modal-detail,
+  .modal#modalabout {
     width: 95%;
     max-width: 95%;
     height: 98%;

@@ -16,6 +16,7 @@ module.exports = {
         details: 'Einzelheiten',
         on_map: 'Ort',
         distance: ' von deinem standort',
+        thanks: 'Ein großes dankeschön an:',
     },
     details: {
         close: 'Schließen',

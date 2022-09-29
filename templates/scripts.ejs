@@ -13,9 +13,12 @@
 
   /**
    * Creates a list of cards within the containerId
+   * Firstly, it removes the content
    */  
-  function createCard(containerId, poi) {
-    $( `#${containerId}` )
+  function createCardList(containerId, pois) {
+    $( `#${containerId}` ).remove( "div.col" );
+    pois.forEach((poi) => {
+      $( `#${containerId}` )
       .append( $( "<div class='col s12 m6 l4 xl3'>" )
         .append( $( "<div class='card small hoverable'></div>" )
           .append( $( "<div class='card-image'></div>" )
@@ -42,6 +45,7 @@
           )
         )
       );
+    })
   }
 
   const uaSupportsQuickApp = (ua) => {
@@ -62,6 +66,10 @@
     $('.tabs').tabs({ onShow: invalidateSizeMap} );
   }
 
+  function reorderPoisByDistance() {
+    pois.sort((a, b) => a.distance - b.distance);
+  }
+
   // Sets the distance in all the POIs, in a new attribute `distance` (in metres)
   function updateDistancePoIs() {
     pois.forEach((poi, index) => {
@@ -71,6 +79,7 @@
           { latitude: poi.lat, longitude: poi.lon });
       }
     });
+    reorderPoisByDistance();
   }
 
     /**
@@ -99,9 +108,21 @@
       poi.urls.forEach(url => {
         $( `#${DETAILS_MODAL_ID} .links` )
           .append( $( "<li></li>" )
-            .append( $( "<a></a>" ).attr( "href", url ).text(url) ) 
+            .append( $( "<a class='truncate'></a>" ).attr( "href", url ).text(url) ) 
           );    
       });
+    }
+    // Attributions
+    $( `#${DETAILS_MODAL_ID} ul.attributions` ).remove( "li" );
+    if (poi.attributions && poi.attributions.length>0) {
+      poi.attributions.forEach(attribution => {
+        $( `#${DETAILS_MODAL_ID} ul.attributions` )
+          .append( $( "<li></li>" ).text(attribution) ) 
+      });
+      $( `#${DETAILS_MODAL_ID} p.attributions` ).show();
+    } else {
+      // hide the introductory text
+      $( `#${DETAILS_MODAL_ID} p.attributions` ).hide();
     }
     $( `#${DETAILS_MODAL_ID}` ).modal('open');
   }
@@ -116,7 +137,26 @@
     // Otherwise do nothing
   }
 
-  // Document on ready
+  /**
+   * Converts the meters into a more friendly string (in metres or kms)
+   * @param {integer} value with the distance in metres 
+   * @returns a string with the value in human-readable format (metres, or kms)
+   */
+   function prettifyDistance(value) { 
+    try {
+      const number = parseInt(value);
+      if (number > 1000) {
+        return `${(value/1000).toFixed(2)} Km. <%= i18n.t('cards.distance') %>`;        
+      }
+    } catch (ex) {
+      return '';
+    }
+    return `${value} m. <%= i18n.t('cards.distance') %>`;        
+  }
+
+  /** 
+   * Document on ready
+   */ 
   $(function(){
 
     initMaterializeComponents();
@@ -129,9 +169,7 @@
         myPosition.lat = position.coords.latitude;
         myPosition.lon = position.coords.longitude
         updateDistancePoIs();
-        pois.forEach((poi) => {
-          createCard(CARDS_CONTAINER_ID, poi);
-        });
+        createCardList(CARDS_CONTAINER_ID, pois);
         // Opens the dialog by default
         openModalIdAtInit();
       });
@@ -147,22 +185,5 @@
     }
     
   }); // end of document ready
-
-  /**
-   * Converts the meters into a more friendly string (in metres or kms)
-   * @param {integer} value with the distance in metres 
-   * @returns a string with the value in human-readable format (metres, or kms)
-   */
-  function prettifyDistance(value) { 
-    try {
-      const number = parseInt(value);
-      if (number > 1000) {
-        return `${(value/1000).toFixed(2)} Km. <%= i18n.t('cards.distance') %>`;        
-      }
-    } catch (ex) {
-      return '';
-    }
-    return `${value} m. <%= i18n.t('cards.distance') %>`;        
-  }
 
 </script>
