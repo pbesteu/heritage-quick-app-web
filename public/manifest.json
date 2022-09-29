@@ -1,0 +1,22 @@
+{
+  "background_color": "#ffffff",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "Heritage Quick App Project for Web",
+  "orientation": "portrait",
+  "scope": "/",
+  "short_name": "Heritage Quick App Web",
+  "start_url": "/",
+  "theme_color": "#ffffff",
+  "icons": [
+    {
+      "src": "/public/favicon.ico",
+      "type": "image/png",
+      "sizes": "32x32"
+    },
+    {
+      "src": "/public/favicon.ico",
+      "type": "image/x-icon"
+    }
+  ]
+}

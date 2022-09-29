@@ -33,6 +33,7 @@ module.exports = async function (fastify, opts) {
       }
     }
   }
+
   fastify.get('/:locale', options, async (request, reply) => {
     const { url, id } = request.query;
     const { locale } = request.params;
