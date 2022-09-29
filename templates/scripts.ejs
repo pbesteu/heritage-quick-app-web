@@ -9,7 +9,8 @@
   var pois = [];
   
   // Populate all the pois into the global "pois" variable    
-  <% pois.forEach(function(poi) { %>pois.push(<%- JSON.stringify(poi)%>);<% }); %>
+  <% pois.forEach(function(poi) { %>
+    pois.push(<%- JSON.stringify(poi)%>);<% }); %>
 
   /**
    * Creates a list of cards within the containerId
