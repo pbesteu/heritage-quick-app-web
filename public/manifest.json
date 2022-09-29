@@ -4,9 +4,9 @@
   "display": "standalone",
   "name": "Heritage Quick App Project for Web",
   "orientation": "portrait",
-  "scope": "/",
+  "scope": "https://heritage-web.glitch.me/",
   "short_name": "Heritage Quick App Web",
-  "start_url": "/",
+  "start_url": "https://heritage-web.glitch.me/?url=https%3A%2F%2Fpbest.eu%2Fcultural-heritage-quick-app%2Fbe%2Fleuven%2Fdata.json",
   "theme_color": "#ffffff",
   "icons": [
     {
