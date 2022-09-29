@@ -133,8 +133,11 @@ ul.tabs {
 
 .modal.modal-detail {
   background-color: #fafafa;
+  height: 80%;
+  max-height: 80%;  
   width: 50%;
   max-width: 600px;
+  top: 10% !important;
 }
 
 #modalinit {
@@ -150,7 +153,11 @@ ul.tabs {
 
 @media only screen and (max-width: 992px) {
   .modal.modal-detail {
-    width: 75%;
+    width: 70%;
+    max-width: 600px;
+    height: 90%;
+    max-height: 90%; 
+    top: 5% !important;
   }
   #modalinit {
     top: 5% !important;
@@ -165,6 +172,9 @@ ul.tabs {
 @media only screen and (max-width: 600px) {
   .modal.modal-detail {
     width: 95%;
+    max-width: 95%;
+    height: 98%;
+    max-height: 98%;
     top: 1% !important;
   }
 }
