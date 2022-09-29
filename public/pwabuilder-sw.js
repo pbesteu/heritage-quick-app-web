@@ -14,6 +14,14 @@ self.addEventListener("message", (event) => {
   }
 });
 
+self.addEventListener("install", event => {
+  console.log("Service worker installed");
+});
+
+self.addEventListener("activate", event => {
+  console.log("Service worker activated");
+});
+
 workbox.routing.registerRoute(
   ({event}) => event.request.destination === 'document',
   new workbox.strategies.NetworkFirst({
@@ -56,7 +64,7 @@ workbox.routing.registerRoute(
     cacheName: IMAGE_CACHE,
     plugins: [
       new workbox.expiration.ExpirationPlugin({
-        maxEntries: 15,
+        maxEntries: 50,
       }),
     ],
   })
