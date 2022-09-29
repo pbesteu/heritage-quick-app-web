@@ -34,10 +34,8 @@
   <div id="cards" class="col s12">
     <div class="container">
       <div class="section">
-        <div class="row">
-          <% content.pois.forEach(function(poi) { %>
-            <%- include('card', { poi: poi}) %>
-          <% }); %>
+        <div class="row" id="card-list">
+          <!-- The list of cards to be populated once we have the geolocation -->
         </div>
         <p class="center-align"><%= i18n.t('cards.end') %></p>
       </div>      
@@ -63,10 +61,10 @@
   <%- include('footer') %>
   
   <!--  Scripts-->
-  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="/public/js/jquery-2.1.1.min.js"></script>
   <script src="/public/js/materialize.min.js"></script>
   <script src="/public/js/geolib.js"></script>  
-  <script src="/public/js/init.js"></script>
+  <%- include('scripts', { pois: content.pois } ) %>
 
   <script>
     // array of poi identifiers in the global variable

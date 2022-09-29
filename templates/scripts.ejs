@@ -1,0 +1,127 @@
+<script>
+// beginning of jQuery name space
+(function($){  
+
+  // Global variables
+  const myPosition = { lat: 0, lon: 0};
+  var pois = [];
+  
+  // Populate all the pois into the global "pois" variable    
+  <% pois.forEach(function(poi) { %>pois.push(<%- JSON.stringify(poi)%>);<% }); %>
+
+  /**
+   * Creates a list of cards within the containerId
+   */  
+  function createCardList(containerId, poi) {
+    $( `#${containerId}` )
+      .append( $( "<div class='col s12 m6 l4 xl3'>" )
+        .append( $( "<div class='card small hoverable'></div>" )
+          .append( $( "<div class='card-image'></div>" )
+            .append( $( "<img/>" )
+              .attr( "src" , ((poi.images.length) > 0)? poi.images[0] : "/public/images/placeholder.jpg")
+              .attr( "alt" , poi.name )
+            )
+          )
+          .append( $( "<div class='card-content'></div>" )
+            .append( $( "<p class='card-distance'></p>" ).text(`${prettifyDistance(poi.distance)}`) )
+            .append( $( "<p></p>" ).text(poi.description) )
+          )
+          .append( $( "<div class='card-action'></div>" )
+            .append( $( "<a class='modal-trigger'></a>" )
+              .attr( "href", `#modal_${poi.id}` )
+              .text( "<%= i18n.t('cards.details') %>" )
+            )
+            .append( $( "<a href='#'></a>" )
+              .attr( "onclick", `openMapOn('${poi.id}')` )
+              .text( "<%= i18n.t('cards.on_map') %>" )
+            )
+          )
+        )
+      );
+  }
+
+  const uaSupportsQuickApp = (ua) => {
+    return ((ua.indexOf("huawei") >= 0 || ua.indexOf("honor") >= 0) && (ua.indexOf("android") >= 0));
+  }
+
+  // to avoid malfunction of map once it´s resized
+  function invalidateSizeMap() {
+    map.invalidateSize();
+  };
+
+  // Init materialize components once the page is loaded
+  function initMaterializeComponents() {
+    $('.sidenav').sidenav();
+    $('.modal-detail').modal({dismissible:true, preventScrolling: true});
+    $('#modalinit').modal({dismissible:false, opacity: 0.8, preventScrolling: true});
+    $('#modalabout').modal({dismissible:false, preventScrolling: true});
+    $('.tabs').tabs({ onShow: invalidateSizeMap} );
+  }
+
+  // Sets the distance in all the POIs, in a new attribute `distance` (in metres)
+  function updateDistancePoIs() {
+    pois.forEach((poi, index) => {
+      if (myPosition.lat !== 0 && myPosition.lon !== 0) {
+        pois[index].distance =  window.geolib.getDistance(
+          { latitude: myPosition.lat, longitude: myPosition.lon },
+          { latitude: poi.lat, longitude: poi.lon });
+      }
+    });
+  }
+
+  // Document on ready
+  $(function(){
+
+    initMaterializeComponents();
+
+    if ('geolocation' in navigator) {
+      $('#modalinit').modal('open');
+      navigator.geolocation.getCurrentPosition((position) => {
+        $('#modalinit').modal('close');
+        // console.log(position.coords.latitude + " " + position.coords.longitude);
+        myPosition.lat = position.coords.latitude;
+        myPosition.lon = position.coords.longitude
+        updateDistancePoIs();
+        console.log(pois)
+        pois.forEach((poi) => {
+          createCardList('card-list', poi);
+        });
+              // Opens the dialog by default
+        if (modalToOpenAtInit) {
+          $(`#modal_${modalToOpenAtInit}`).modal('open');
+        }
+      });
+    } else {
+      /* geolocation IS NOT available */
+      console.error('geolocation IS NOT available')
+    }
+
+    if (uaSupportsQuickApp(navigator.userAgent.toLowerCase())) {
+      $('.quick-app-link').show();
+    } else {
+      $('.quick-app-link').hide();
+    }
+    
+  }); // end of document ready
+
+  /**
+   * Converts the meters into a more friendly string (in metres or kms)
+   * @param {integer} value with the distance in metres 
+   * @returns a string with the value in human-readable format (metres, or kms)
+   */
+  function prettifyDistance(value) { 
+    try {
+      const number = parseInt(value);
+      if (number > 1000) {
+        return `${(value/1000).toFixed(2)} Km.`;        
+      }
+    } catch (ex) {
+      return '';
+    }
+    return `${value} m.`;        
+  }
+
+
+})(jQuery); // end of jQuery name space
+
+</script>

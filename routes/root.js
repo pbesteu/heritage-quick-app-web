@@ -63,6 +63,7 @@ module.exports = async function (fastify, opts) {
       const templateParams = {
         i18n: fastify.i18n, 
         meta: json.meta, 
+        content: {},  // set later
         identifier: id
       }; 
 
