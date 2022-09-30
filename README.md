@@ -1,10 +1,10 @@
-# Heritage Quick App Project for the Web
+# Heritage in… for the Web
 
-This repository contains a web application that is part of the [Heritage Quick App project](https://pbesteu.github.io/poi-quick-app/).
+This repository contains a web application that is part of the [Heritage In… Quick App project](https://pbesteu.github.io/poi-quick-app/).
 
-> The Local Heritage Quick App project provides a methodology and a set of tools for towns to promote their most precious assets, enabling citizens and institutions to launch new projects focused on local art, culture, history, nature, or whatever is engaging in a place.
+> The Heritage In… Quick App project provides a methodology and a set of tools for towns to promote their most precious assets, enabling citizens and institutions to launch new projects focused on local art, culture, history, nature, or whatever is engaging in a place.
 
-This project is a simple web application, based on [Fastify](https://www.fastify.io), that uses the outcomes generated through the [Heritage Quick App methodology](https://pbesteu.github.io/poi-quick-app/#Themethodology). This app enables the visualization of the databases that follow the templates provided.
+This project is a simple web application, based on [Fastify](https://www.fastify.io), that uses the outcomes generated through the [Heritage In… Quick App methodology](https://pbesteu.github.io/poi-quick-app/#Themethodology). This app enables the visualization of the databases that follow the templates provided.
 
 ## Run it locally
 
