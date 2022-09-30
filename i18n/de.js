@@ -17,7 +17,7 @@ module.exports = {
         feedback: 'Kommentare?',
     },
     lang: {
-        de: 'Englisch',
+        en: 'Englisch',
         de: 'Deutsch',
         es: 'Spanisch',
         fr: 'Französisch',
