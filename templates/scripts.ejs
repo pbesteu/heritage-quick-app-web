@@ -7,6 +7,7 @@
   // Global variables
   var myPosition = { lat: 0, lon: 0};
   var pois = [];
+  var dataUrl = '<%= url %>';
   
   // Populate all the pois into the global "pois" variable    
   <% pois.forEach(function(poi) { %>
@@ -126,8 +127,32 @@
       // hide the introductory text
       $( `#${DETAILS_MODAL_ID} p.attributions` ).hide();
     }
+    // The share button
+    if (navigator.canShare) {
+      $( `#${DETAILS_MODAL_ID} .share-button` ).attr( 'onclick' , `shareDetails({name: '${poi.name}', description:'${poi.description}', id:'${poi.id}'})`);    
+    } else {
+      $( `#${DETAILS_MODAL_ID} .share-button` ).hide();
+    }
     $( `#${DETAILS_MODAL_ID}` ).modal('open');
   }
+
+  function shareDetails({ name, description, id }) {
+    var urlShare = `${window.location.href.split("?")[0]}?url=${dataUrl}&id=${id}`;
+    var shareData = {
+        title: name,
+        text: description,
+        url: window.location.href,
+      };
+    try {
+      if (!navigator.canShare || !navigator.canShare(shareData)) {
+        throw new Error('ERROR: cannot share data');
+      } else {
+        navigator.share(shareData);
+      }
+    } catch (e) {
+      console.log('ERROR: cannot share data');
+    }
+  } 
 
   /**
    * Checks if the app must open the dialog with a POI at init.
@@ -169,7 +194,6 @@
    * Document on ready
    */ 
   $(function(){
-
     initMaterializeComponents();
 
     if ('geolocation' in navigator) {

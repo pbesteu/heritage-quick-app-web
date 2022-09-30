@@ -31,6 +31,7 @@ module.exports = {
     },
     details: {
         close: 'Schließen',
+        share: 'Teilen',
     },
     about: {
         title: 'Über %{title}',
