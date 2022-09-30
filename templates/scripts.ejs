@@ -21,7 +21,7 @@
     pois.forEach((poi) => {
       $( `#${containerId}` )
       .append( $( "<div class='col s12 m6 l4 xl3'>" )
-        .append( $( "<div class='card small hoverable'></div>" )
+        .append( $( "<div class='card small hoverable'></div>" ).attr( "onclick", `populateOpenDetailDialog('${poi.id}')` )
           .append( $( "<div class='card-image'></div>" )
             .append( $( "<img/>" )
               .attr( "src" , ((poi.images.length) > 0)? poi.images[0] : "/public/images/placeholder.jpg")
