@@ -129,24 +129,24 @@
     }
     // The share button
     if (navigator.canShare) {
-      $( `#${DETAILS_MODAL_ID} .share-button` ).attr( 'onclick' , `shareDetails({name: '${poi.name}', description:'${poi.description}', id:'${poi.id}'})`);    
+      $( `#${DETAILS_MODAL_ID} .share-button` ).attr( 'onclick' , `shareDetails({name: '${poi.name.replace(/["']/g, "")}', description:'${poi.description.replace(/["']/g, "")}', id:'${poi.id}'})`);    
     } else {
-      $( `#${DETAILS_MODAL_ID} .share-button` ).attr( 'onclick' , `shareDetails({name: '${poi.name}', description:'${poi.description}', id:'${poi.id}'})`);    
+      $( `#${DETAILS_MODAL_ID} .share-button` ).hide();
     }
     $( `#${DETAILS_MODAL_ID}` ).modal('open');
   }
 
   function shareDetails({ name, description, id }) {
-    var urlShare = `${window.location.href.split("?")[0]}?url=${dataUrl}&id=${id}`;
+    var urlShare = `${window.location.href.split("?")[0]}?url=${encodeURIComponent(dataUrl)}&id=${id}`;
     var shareData = {
         title: name,
         text: description,
-        url: window.location.href,
+        url: urlShare,
       };
     try {
       navigator.share(shareData);
     } catch (e) {
-      console.log(e);
+      console.log('ERROR: cannot share data');
     }
   } 
 
