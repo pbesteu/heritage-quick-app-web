@@ -131,7 +131,7 @@
     if (navigator.canShare) {
       $( `#${DETAILS_MODAL_ID} .share-button` ).attr( 'onclick' , `shareDetails({name: '${poi.name}', description:'${poi.description}', id:'${poi.id}'})`);    
     } else {
-      $( `#${DETAILS_MODAL_ID} .share-button` ).hide();
+      $( `#${DETAILS_MODAL_ID} .share-button` ).attr( 'onclick' , `shareDetails({name: '${poi.name}', description:'${poi.description}', id:'${poi.id}'})`);    
     }
     $( `#${DETAILS_MODAL_ID}` ).modal('open');
   }
@@ -144,13 +144,9 @@
         url: window.location.href,
       };
     try {
-      if (!navigator.canShare || !navigator.canShare(shareData)) {
-        throw new Error('ERROR: cannot share data');
-      } else {
-        navigator.share(shareData);
-      }
+      navigator.share(shareData);
     } catch (e) {
-      console.log('ERROR: cannot share data');
+      console.log(e);
     }
   } 
 
