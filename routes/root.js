@@ -34,7 +34,7 @@ module.exports = async function (fastify, opts) {
     }
   }
 
-  fastify.get('/:locale', options, async (request, reply) => {
+  fastify.get('/town/:locale', options, async (request, reply) => {
     const { url, id } = request.query;
     const { locale } = request.params;
 
@@ -63,7 +63,8 @@ module.exports = async function (fastify, opts) {
 
       const templateParams = {
         i18n: fastify.i18n, 
-        meta: json.meta, 
+        meta: json.meta,
+        url, 
         content: {},  // set later
         identifier: id
       }; 

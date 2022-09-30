@@ -6,7 +6,7 @@
   "orientation": "portrait",
   "scope": "/",
   "short_name": "Heritage Quick App Web",
-  "start_url": "/?url=https%3A%2F%2Fpbest.eu%2Fcultural-heritage-quick-app%2Fbe%2Fleuven%2Fdata.json",
+  "start_url": "/",
   "theme_color": "#ffffff",
   "icons": [
     {

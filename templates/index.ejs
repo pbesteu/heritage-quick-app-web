@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
   <title><%= meta.app_title %></title>
   <link rel="icon" type="image/png" href="/public/favicon.ico">
-  <link rel="manifest" href="/public/manifest.json">
+  <link rel="manifest" href="/manifest/manifest.json?name=<%= encodeURIComponent(meta.app_title) %>&start_url=<%= encodeURIComponent(url) %>&theme_color=<%= encodeURIComponent(content.app.theme.brand) %>">
   <!-- Leaflet -->
   <link href="/public/maps/leaflet/leaflet.css" rel="stylesheet">
   <link href="/public/maps/leaflet-control/L.Control.Locate.min.css" rel="stylesheet">

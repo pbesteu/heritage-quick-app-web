@@ -21,7 +21,7 @@ module.exports = async function (fastify, opts) {
     },
   });
 
-  // To work with the SW in /public scope
+  // To work with the SW in the "/public" scope
   fastify.addHook('preHandler', (req, reply, done) => {
     reply.header('Service-Worker-Allowed', '/')
     done()
