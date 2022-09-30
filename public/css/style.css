@@ -8,6 +8,11 @@ main {
   flex: 1 0 auto;
 }
 
+#implementations-page {
+  min-height: 100vh;
+  width: 100%;
+}
+
 .icon-block {
   padding: 0 15px;
 }
@@ -89,7 +94,7 @@ ul.tabs {
 }
 
 .modal.modal-detail .card image {
-  max-height: 50%;
+  max-height: 400px;
   height: 50%;
 }
 
@@ -127,6 +132,10 @@ ul.tabs {
   #osm, #cards {
     height: calc(100vh - 58px - 46px - 32px);
   } 
+
+  .modal.modal-detail .card image {
+    max-height: 300px;
+  }  
 }
 
 /* Modals with the details */

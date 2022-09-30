@@ -100,7 +100,7 @@
     // title
     $( `#${DETAILS_MODAL_ID} .modal-detail-name` ).text( poi.name );
     // distance
-    $( `#${DETAILS_MODAL_ID} .card-distance-value` ).text( poi.distance );
+    $( `#${DETAILS_MODAL_ID} .card-distance-value` ).text( prettifyDistance(poi.distance) );
     // descriptions
     $( `#${DETAILS_MODAL_ID} .card-description` ).text( poi.description );
     $( `#${DETAILS_MODAL_ID} .card-description-more` ).text( poi.more );

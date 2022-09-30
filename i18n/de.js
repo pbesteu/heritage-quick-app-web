@@ -1,16 +1,27 @@
 module.exports = {
     app: {
         title: 'Local Heritage App',
+        quickapp: 'QuickApp',
+        implementations: 'Aktuelle implementierungen des projekts',
+        missed: 'Vermissen sie etwas?',
+        get_involved: 'Jetzt mitmachen!',
+        okay: 'Ja, öffnen!',
+        no: 'Nein',
     },    
     index : {
         map: 'Karte',
         cards: 'Karten',
-        quickapp: 'QuickApp',
         about: 'Über',
         welcome: 'Willkommen bei %{title}',
         loading: 'Interessante Orte in Ihrer Umgebung finden...',
         feedback: 'Kommentare?',
     },
+    lang: {
+        de: 'Englisch',
+        de: 'Deutsch',
+        es: 'Spanisch',
+        fr: 'Französisch',
+    },    
     cards: {
         end: 'Du hast alle artikel gesehen 🫠',
         details: 'Einzelheiten',

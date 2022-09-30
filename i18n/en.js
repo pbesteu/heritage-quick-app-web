@@ -2,8 +2,17 @@ module.exports = {
     app: {
         title: 'Local Heritage App',
         quickapp: 'Would you like to try the Quick App version?',
+        implementations: 'Current implementations of the project',
+        missed: 'Missing anything?',
+        get_involved: 'Get involved now!',
         okay: 'Yes, open it!',
         no: 'No',
+    },
+    lang: {
+        en: 'English',
+        de: 'German',
+        es: 'Spanish',
+        fr: 'French',
     },
     index : {
         map: 'Map',
