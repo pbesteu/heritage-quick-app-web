@@ -48,22 +48,22 @@ The app requires the following parameters:
 
 Eckernförde (Germany) Street Heritage in English:
 
-[`http://localhost:3000/?url=https://pbest.eu/cultural-heritage-quick-app/de/eckernforde/data.json`](https://localhost:3000/?url=http://pbest.eu/cultural-heritage-quick-app/de/eckernforde/data.json)
+[`http://localhost:3000/town/?url=https://pbest.eu/cultural-heritage-quick-app/de/eckernforde/data.json`](https://localhost:3000/town?url=http://pbest.eu/cultural-heritage-quick-app/de/eckernforde/data.json)
 
 Leuven (Belgium) Cultural Heritage in English:
 
-[`http://localhost:3000/?url=https://pbest.eu/cultural-heritage-quick-app/be/leuven/data.json`](https://localhost:3000?url=http://pbest.eu/cultural-heritage-quick-app/be/leuven/data.json)
+[`http://localhost:3000/town/?url=https://pbest.eu/cultural-heritage-quick-app/be/leuven/data.json`](https://localhost:3000/town?url=http://pbest.eu/cultural-heritage-quick-app/be/leuven/data.json)
 
 Eckernförde (Germany) Street Heritage in German:
 
-[`http://localhost:3000/de?url=https://pbest.eu/cultural-heritage-quick-app/de/eckernforde/data.json`](https://localhost:3000/de?url=http://pbest.eu/cultural-heritage-quick-app/de/eckernforde/data.json)
+[`http://localhost:3000/town/de?url=https://pbest.eu/cultural-heritage-quick-app/de/eckernforde/data.json`](https://localhost:3000/town/de?url=http://pbest.eu/cultural-heritage-quick-app/de/eckernforde/data.json)
 
 Select a statue (Rembert Dodoens) in Leuven Culture Heritage database:
 
-[`http://localhost:3000/?url=https://pbest.eu/cultural-heritage-quick-app/be/leuven/data.json&id=dodoens`](http://localhost:3000/?url=http://pbest.eu/cultural-heritage-quick-app/be/leuven/data.json&id=dodoens)
+[`http://localhost:3000/town/?url=https://pbest.eu/cultural-heritage-quick-app/be/leuven/data.json&id=dodoens`](http://localhost:3000/town/?url=http://pbest.eu/cultural-heritage-quick-app/be/leuven/data.json&id=dodoens)
 
 
 Select a building  (Rembert Dodoens) in the Eckernförde (Germany) Street Heritage project in German:
 
-[`http://localhost:3000/de?url=https://pbest.eu/cultural-heritage-quick-app/de/eckernforde/data.json&id=7096`](http://localhost:3000/de?url=https://pbest.eu/cultural-heritage-quick-app/de/eckernforde/data.json&id=7096)
+[`http://localhost:3000/town/de?url=https://pbest.eu/cultural-heritage-quick-app/de/eckernforde/data.json&id=7096`](http://localhost:3000/town/de?url=https://pbest.eu/cultural-heritage-quick-app/de/eckernforde/data.json&id=7096)
 
