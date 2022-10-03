@@ -64,15 +64,17 @@
   function initMaterializeComponents() {
     $('.sidenav').sidenav();
     $('#modal-quickapp').modal({dismissible:false, preventScrolling: true});
-    $('.modal-detail').modal({dismissible:true, preventScrolling: true, onOpenEnd: initMaterialBoxes});
+    $('.modal-detail').modal({dismissible:true, preventScrolling: true, onOpenEnd: initModalDetail});
     $('#modal-init').modal({dismissible:false, opacity: 0.8, preventScrolling: true});
     $('#modal-intro-geolocation').modal({dismissible:false, opacity: 0.8, preventScrolling: true});
     $('#modalabout').modal({dismissible:false, preventScrolling: true});
     $('.tabs').tabs({ onShow: invalidateSizeMap} );
   }
 
-  function initMaterialBoxes() {
+  function initModalDetail() {
     $('.materialboxed').materialbox();
+    // Force scrolls up
+    $(`#${DETAILS_MODAL_ID} .modal-content`).scrollTop(0);
   }
 
   function reorderPoisByDistance() {
