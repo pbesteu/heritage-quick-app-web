@@ -19,7 +19,7 @@
    * Firstly, it removes the content
    */  
   function createCardList(containerId, pois) {
-    $( `#${containerId}` ).remove( "div.col" );
+    $( `#${containerId} div.col` ).remove( );
     pois.forEach((poi) => {
       $( `#${containerId}` )
       .append( $( "<div class='col s12 m6 l4 xl3'>" )
@@ -130,7 +130,7 @@
     // type
     $( `#${DETAILS_MODAL_ID} .type` ).text( poi.type );
     // Links
-    $( `#${DETAILS_MODAL_ID} .links` ).remove( "li" );
+    $( `#${DETAILS_MODAL_ID} .links li` ).remove();
     if (poi.urls && poi.urls.length>0) {
       poi.urls.forEach(url => {
         $( `#${DETAILS_MODAL_ID} .links` )
@@ -140,7 +140,7 @@
       });
     }
     // Attributions
-    $( `#${DETAILS_MODAL_ID} ul.attributions` ).remove( "li" );
+    $( `#${DETAILS_MODAL_ID} ul.attributions li` ).remove();
     if (poi.attributions && poi.attributions.length>0) {
       poi.attributions.forEach(attribution => {
         $( `#${DETAILS_MODAL_ID} ul.attributions` )
