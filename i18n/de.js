@@ -16,6 +16,8 @@ module.exports = {
         welcome: 'Willkommen bei %{title}',
         loading: 'Interessante Orte in Ihrer Umgebung finden...',
         feedback: 'Kommentare?',
+        geolocation_permission: 'Diese App verwendet Ihren geschätzten Standort, um die nächsten interessanten Orte in der Umgebung vorzuschlagen. Bitte klicken Sie um fortzufahren und akzeptieren Sie den Dialog Ihres Browsers.',
+        lets_go: 'lass uns gehen',
     },
     lang: {
         en: 'Englisch',
@@ -28,7 +30,8 @@ module.exports = {
         details: 'Einzelheiten',
         on_map: 'Ort',
         distance: ' von deinem standort',
-        thanks: 'Ein großes dankeschön an:',
+        thanks: 'Danksagungen:',
+        permalink: 'Permalink',
     },
     details: {
         close: 'Schließen',

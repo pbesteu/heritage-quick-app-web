@@ -22,13 +22,16 @@ module.exports = {
         welcome: 'Welcome to %{title}',
         loading: 'Finding the interesting places around you...',
         feedback: 'Comments?',
+        geolocation_permission: 'This app uses your estimated location to suggest the nearest interesting places around. Please, click to continue and accept the dialog of your browser.',
+        lets_go: 'Let\'s go',
     },
     cards: {
         end: 'You have seen all the items 🫠',
         details: 'Details',
         on_map: 'Location',
         distance: ' from your location',
-        thanks: 'A big thanks to:',
+        thanks: 'Acknowledgements:',
+        permalink: 'Permalink',
     },
     details: {
         close: 'Close',

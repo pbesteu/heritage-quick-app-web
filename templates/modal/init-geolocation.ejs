@@ -1,0 +1,11 @@
+<div id="modal-intro-geolocation" class="modal cover">
+    <div class="modal-content">
+      <h5 class="right-align lime-text text-lighten-1"><%= i18n.t('index.welcome', { title: meta.app_title }) %></h5>
+      <p class="white-text right-align">
+        <%= i18n.t('index.geolocation_permission') %>
+      </p>
+      <p class="center-align"><a onclick="locateUserAndInitPois()" class="waves-effect waves-light btn-large lime lighten-1 black-text">
+        <i class="material-icons left">gps_fixed</i><%= i18n.t('index.lets_go') %></a>
+      </p>
+    </div> 
+</div>

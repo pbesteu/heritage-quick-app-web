@@ -65,7 +65,8 @@
     $('.sidenav').sidenav();
     $('#modal-quickapp').modal({dismissible:false, preventScrolling: true});
     $('.modal-detail').modal({dismissible:true, preventScrolling: true, onOpenEnd: initMaterialBoxes});
-    $('#modalinit').modal({dismissible:false, opacity: 0.8, preventScrolling: true});
+    $('#modal-init').modal({dismissible:false, opacity: 0.8, preventScrolling: true});
+    $('#modal-intro-geolocation').modal({dismissible:false, opacity: 0.8, preventScrolling: true});
     $('#modalabout').modal({dismissible:false, preventScrolling: true});
     $('.tabs').tabs({ onShow: invalidateSizeMap} );
   }
@@ -163,13 +164,20 @@
     }
     // The feedback button
     $( `#${DETAILS_MODAL_ID} .feedback-button` ).attr( 'href' , `${issue_url}${poi.id}`);
+    // Permalink
+    var permalink = getPermalink(poi.id);
+    $( `#${DETAILS_MODAL_ID} a.permalink` ).attr( 'href' , permalink).text(permalink);
     setTimeout(function() {
       $( `#${DETAILS_MODAL_ID}` ).modal('open');
     }, 400);
   }
 
+  function getPermalink(id) {
+    return `${window.location.href.split("?")[0]}?url=${encodeURIComponent(dataUrl)}&id=${id}`;
+  }
+
   function shareDetails({ name, description, id }) {
-    var urlShare = `${window.location.href.split("?")[0]}?url=${encodeURIComponent(dataUrl)}&id=${id}`;
+    var urlShare = getPermalink(id);
     var shareData = {
         title: name,
         text: description,
@@ -218,21 +226,28 @@
     }
   }
 
-  /** 
-   * Document on ready
-   */ 
-  $(function(){
-    initMaterializeComponents();
+  function closeInitModals() {
+    $('#modal-init').modal('close');
+    $('#modal-intro-geolocation').modal('close');
+  }
 
+  /**
+   * The user will be asked for granting permission to use
+   * the geolocation. Otherwise they cannot continue.
+   * The dialogs will be closed once the geolocation is enabled. 
+   * Function to locate the user and calculates the distance
+   * of the PoIs. This will be run before the user interacts with 
+   * the app.
+   */  
+  function locateUserAndInitPois() {
     if ('geolocation' in navigator) {
-      $('#modalinit').modal('open');
       navigator.geolocation.getCurrentPosition((position) => {
-        $('#modalinit').modal('close');
         // console.log(position.coords.latitude + " " + position.coords.longitude);
         myPosition.lat = position.coords.latitude;
         myPosition.lon = position.coords.longitude
         updateDistancePoIs();
         createCardList(CARDS_CONTAINER_ID, pois);
+        closeInitModals();
         // Opens the dialog by default
         openModalIdAtInit();
         showQuickAppOptions();
@@ -240,8 +255,23 @@
     } else {
       /* geolocation IS NOT available */
       console.error('geolocation IS NOT available')
+      $('#modal-intro-geolocation').modal('open');
     }
+  }
 
+  /** 
+   * Document on ready
+   */ 
+  $(function(){
+    initMaterializeComponents();
+    // First checks if the user read the intro
+    if (!localStorage.getItem('iWasHere')) {
+      $('#modal-intro-geolocation').modal('open');
+      localStorage.setItem('iWasHere', 'true');
+    } else {
+      $('#modal-init').modal('open');
+      locateUserAndInitPois();
+    }
   }); // end of document ready
 
 </script>

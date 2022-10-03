@@ -140,14 +140,26 @@ ul.tabs {
   top: 10% !important;
 }
 
-#modalinit {
+#modal-init {
   top: 15% !important;
   height: 60%;
 }
 
-#modalinit h5,
-#modalinit p {
+#moda-linit h5,
+#moda-linit p {
   margin: 0;
+}
+
+.progress .indeterminate {
+  background-color: yellowgreen;
+}
+
+.progress {
+  background-color: white;
+}
+
+p.permalink {
+  font-size: x-small;
 }
 
 
@@ -160,7 +172,7 @@ ul.tabs {
     max-height: 90%; 
     top: 5% !important;
   }
-  #modalinit {
+  #modal-init {
     top: 5% !important;
     height: 90%;
   }  

@@ -1,6 +1,6 @@
 
 
-const cacheName = 'heritagein_v02';
+const cacheName = 'heritage_in_v01';
 const cachedFiles = [
   '/public/images/background.jpg',
   '/public/images/placeholder.jpg'
