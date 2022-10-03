@@ -24,7 +24,7 @@ module.exports = async function (fastify, opts) {
   // To work with the SW in the "/public" scope
   fastify.addHook('preHandler', (req, reply, done) => {
     reply.header('Service-Worker-Allowed', '/')
-    reply.header('Cache-Control', 'max-age=1, must-revalidate')
+    //reply.header('Cache-Control', 'max-age=300, must-revalidate')
     done()
   })
 
