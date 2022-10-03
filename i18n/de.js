@@ -1,8 +1,8 @@
 module.exports = {
     app: {
         title: 'Heritage in…',
-        quickapp: 'QuickApp',
         implementations: 'Aktuelle implementierungen des projekts',
+        quickapp: 'Möchten Sie die Quick-App-Version ausprobieren?',
         missed: 'Vermissen sie etwas?',
         get_involved: 'Jetzt mitmachen!',
         okay: 'Ja, öffnen!',
@@ -11,6 +11,7 @@ module.exports = {
     index : {
         map: 'Karte',
         cards: 'Karten',
+        quickapp: 'QuickApp',
         about: 'Über',
         welcome: 'Willkommen bei %{title}',
         loading: 'Interessante Orte in Ihrer Umgebung finden...',
@@ -32,6 +33,7 @@ module.exports = {
     details: {
         close: 'Schließen',
         share: 'Teilen',
+        feedback: 'Feedback',
     },
     about: {
         title: 'Über %{title}',

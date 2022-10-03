@@ -1,36 +1,42 @@
 
 <div id="modal_detail" class="modal-detail modal modal-fixed-footer">
-  <div class="modal-content valign-wrapper">
-    <div class="card card-detail">
-      <div class="card-image waves-effect waves-block waves-light">
-        <img src="/public/images/placeholder.jpg" alt="Point of interest">
+  <div class="modal-content">
+    <h5 class="grey-text text-darken-4">
+      <span class="modal-detail-name">NAME</span>
+    </h5>
+    <p class="card-distance">
+      <span class="type right-align">TYPE</span> - <span class="card-distance-value">&nbsp;</span>
+    </p>
+    <div class="section row card gallery center-align">
+      <div class="col s12 m6 l4">
+        <img src="/public/images/placeholder.jpg" class="materialboxed responsive-img card">
       </div>
-      <div class="card-content">
-        <span class="card-title activator grey-text text-darken-4 truncate">
-          <span class="modal-detail-name">NAME</span>
-          <i class="material-icons right">more_vert</i>
-        </span>
-        <p class="card-distance">
-          <span class="card-distance-value">&nbsp;</span></p>
-        <p class="card-description"></p>
-      </div>
-      <div class="card-reveal">
-        <span class="card-title grey-text text-darken-4">
-          <span class="modal-detail-name">NAME</span>
-          <i class="material-icons right">close</i>
-        </span>
-        <p class="card-description"></p>
-        <p class="grey-text text-darken-3 card-description-more"></p>
-        <ul class="links">
-        </ul>
-        <p class="attributions"><%= i18n.t('cards.thanks') %></p>
-        <ul class="attributions">
-        </ul>
-      </div>
-    </div>  
+    </div>
+    <div class="section">
+      <h5 class="grey-text text-darken-4 truncate">
+        <span class="modal-detail-name">NAME</span>
+      </h5>
+      <p class="card-distance">
+        <span class="type right-align">TYPE</span> - <span class="card-distance-value">&nbsp;</span>
+      </p>
+      <p class="card-description"></p>
+      <p class="grey-text text-darken-3 card-description-more"></p>
+    </div>
+    <div class="divider"></div>
+    <div class="section">
+      <p class="wikidata"><a href="#" target="_blank">Wikidata</a></p>
+      <ul class="links">
+      </ul>
+    </div>
+    <div class="section">      
+      <p class="attributions"><%= i18n.t('cards.thanks') %></p>
+      <ul class="attributions">
+      </ul>
+    </div>
   </div>
   <div class="modal-footer">
     <a href="#!" class="share-button waves-effect waves-green btn-flat"><%= i18n.t('details.share') %></a>
+    <a href="#!" target="_blank" class="feedback-button waves-effect waves-green btn-flat"><%= i18n.t('details.feedback') %></a>
     <a href="#!" class="modal-close waves-effect waves-green btn-flat"><%= i18n.t('details.close') %></a>
   </div>
 </div>

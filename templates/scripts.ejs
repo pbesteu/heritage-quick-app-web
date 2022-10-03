@@ -8,6 +8,7 @@
   var myPosition = { lat: 0, lon: 0};
   var pois = [];
   var dataUrl = '<%= url %>';
+  var issue_url = '<%= app.issue_url %>';
   
   // Populate all the pois into the global "pois" variable    
   <% pois.forEach(function(poi) { %>
@@ -24,14 +25,14 @@
       .append( $( "<div class='col s12 m6 l4 xl3'>" )
         .append( $( "<div class='card small hoverable'></div>" ).attr( "onclick", `populateOpenDetailDialog('${poi.id}')` )
           .append( $( "<div class='card-image'></div>" )
-            .append( $( "<img/>" )
+            .append( $( "<img class='responsive-img'/>" )
               .attr( "src" , ((poi.images.length) > 0)? poi.images[0] : "/public/images/placeholder.jpg")
               .attr( "alt" , poi.name )
             )
             .append( $( "<span class='card-title'></span>" ).text(poi.name) )
           )
           .append( $( "<div class='card-content'></div>" )
-            .append( $( "<p class='card-distance'></p>" ).text(`${prettifyDistance(poi.distance)}`) )
+            .append( $( "<p class='card-distance'></p>" ).text(`${poi.type} - ${prettifyDistance(poi.distance)}`) )
             .append( $( "<p></p>" ).text(poi.description) )
           )
           .append( $( "<div class='card-action'></div>" )
@@ -63,10 +64,14 @@
   function initMaterializeComponents() {
     $('.sidenav').sidenav();
     $('#modal-quickapp').modal({dismissible:false, preventScrolling: true});
-    $('.modal-detail').modal({dismissible:true, preventScrolling: true});
+    $('.modal-detail').modal({dismissible:true, preventScrolling: true, onOpenEnd: initMaterialBoxes});
     $('#modalinit').modal({dismissible:false, opacity: 0.8, preventScrolling: true});
     $('#modalabout').modal({dismissible:false, preventScrolling: true});
     $('.tabs').tabs({ onShow: invalidateSizeMap} );
+  }
+
+  function initMaterialBoxes() {
+    $('.materialboxed').materialbox();
   }
 
   function reorderPoisByDistance() {
@@ -92,11 +97,25 @@
    function populateOpenDetailDialog(poiId) {
     var poi = pois.find( el => el.id === poiId );
     if (!poi) return;
-    // The image
-    if (poi.images.length > 0) {
-      $( `#${DETAILS_MODAL_ID} img` ).attr("src" , poi.images[0]).attr("alt", poi.name);
+    // The images (first removes the existing ones)
+    $( `#${DETAILS_MODAL_ID} .gallery div` ).remove();
+    const imgNum = poi.images.length;
+    if (imgNum > 0) {
+      var imgClass = 'col s12 m6 l4';
+      if (imgNum === 1) {
+        imgClass = 'col s12 m12 l12';
+      } else if (imgNum === 2) {
+        imgClass = 'col s12 m6 l6';
+      }
+      poi.images.forEach(function (img, index) {
+        $( `#${DETAILS_MODAL_ID} .gallery` )
+          .append( $( `<div class="${imgClass}"></div>` )
+            .append( $('<img class="materialboxed responsive-img card"/>').attr("src" , img).attr("alt", poi.name) ) );
+      })
     } else {
-      $( `#${DETAILS_MODAL_ID} img`).attr("src" , "/public/images/placeholder.jpg").attr("alt", poi.name);
+      $( `#${DETAILS_MODAL_ID} .gallery` )
+          .append( $( '<div class="col s12 m12 l12"></div>' )
+            .append( $('<img class="materialboxed responsive-img card"/>').attr("src" , "/public/images/placeholder.jpg").attr("alt", poi.name) ) );
     }
     // title
     $( `#${DETAILS_MODAL_ID} .modal-detail-name` ).text( poi.name );
@@ -105,6 +124,8 @@
     // descriptions
     $( `#${DETAILS_MODAL_ID} .card-description` ).text( poi.description );
     $( `#${DETAILS_MODAL_ID} .card-description-more` ).text( poi.more );
+    // type
+    $( `#${DETAILS_MODAL_ID} .type` ).text( poi.type );
     // Links
     $( `#${DETAILS_MODAL_ID} .links` ).remove( "li" );
     if (poi.urls && poi.urls.length>0) {
@@ -127,13 +148,24 @@
       // hide the introductory text
       $( `#${DETAILS_MODAL_ID} p.attributions` ).hide();
     }
+    // Wikidata
+    if (poi.wikidata) {
+      $( `#${DETAILS_MODAL_ID} .wikidata a` ).attr( "href" , `https://www.wikidata.org/wiki/${poi.wikidata}` );
+      $( `#${DETAILS_MODAL_ID} .wikidata` ).show();
+    } else {
+      $( `#${DETAILS_MODAL_ID} .wikidata` ).hide();
+    }
     // The share button
     if (navigator.canShare) {
       $( `#${DETAILS_MODAL_ID} .share-button` ).attr( 'onclick' , `shareDetails({name: '${poi.name.replace(/["']/g, "")}', description:'${poi.description.replace(/["']/g, "")}', id:'${poi.id}'})`);    
     } else {
       $( `#${DETAILS_MODAL_ID} .share-button` ).hide();
     }
-    $( `#${DETAILS_MODAL_ID}` ).modal('open');
+    // The feedback button
+    $( `#${DETAILS_MODAL_ID} .feedback-button` ).attr( 'href' , `${issue_url}${poi.id}`);
+    setTimeout(function() {
+      $( `#${DETAILS_MODAL_ID}` ).modal('open');
+    }, 400);
   }
 
   function shareDetails({ name, description, id }) {

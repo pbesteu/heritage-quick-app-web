@@ -33,6 +33,7 @@ module.exports = {
     details: {
         close: 'Close',
         share: 'Share',
+        feedback: 'Feedback',
     },
     about: {
         title: 'About %{title}',

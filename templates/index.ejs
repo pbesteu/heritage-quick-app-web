@@ -16,7 +16,7 @@
   <link href="/public/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="/public/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <!-- Service worker registration -->
-  <%- include('service-worker') %>
+  <% /*include('service-worker')*/ %>
 </head>
 <body>
   <div class="navbar-fixed"> 
@@ -67,7 +67,7 @@
   <script src="/public/js/jquery-2.1.1.min.js"></script>
   <script src="/public/js/materialize.min.js"></script>
   <script src="/public/js/geolib.js"></script>  
-  <%- include('scripts', { pois: content.pois } ) %>
+  <%- include('scripts', { pois: content.pois, app: content.app } ) %>
   <%- include('map', { pois: content.pois, color: 'red' }); %>
   
   </body>

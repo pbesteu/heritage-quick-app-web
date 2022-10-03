@@ -33,13 +33,14 @@ main {
   width: 100%;
 }
 
-.card-content .card-distance {
+.card-distance {
   margin-top: -1em;
   font-size: smaller;
   color: darkgrey;
 }
 
-.card-content p {
+.card-content p,
+.card-detail p {
   font-size: smaller;
 }
 
@@ -93,12 +94,6 @@ ul.tabs {
   height: calc(100vh - 64px - 48px - 48px);
 }
 
-.modal.modal-detail .card image {
-  max-height: 400px;
-  height: 50%;
-}
-
-
 @media only screen and (max-width: 992px) {
   nav .brand-logo {
     position: absolute;
@@ -132,10 +127,6 @@ ul.tabs {
   #osm, #cards {
     height: calc(100vh - 58px - 46px - 32px);
   } 
-
-  .modal.modal-detail .card image {
-    max-height: 300px;
-  }  
 }
 
 /* Modals with the details */
