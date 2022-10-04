@@ -14,7 +14,7 @@
   <div class="cover" id="implementations-page">
     <div class="container">
       <h1 class="white-text"><%= i18n.t('app.title') %></h1>
-      <h3 class="lime-text text-lighten-4"><%= i18n.t('app.implementations') %></h3>
+      <h3 class="lime-text text-lighten-1"><%= i18n.t('app.implementations') %></h3>
       <div class="collection">
         <% json.towns.forEach((town) => { %>
           <% town.lang.forEach((iso) => { %>
@@ -24,9 +24,9 @@
           <% }) %>  
         <% }) %>
       </div>
-      <p class="flow-text lime-text text-lighten-4">
+      <p class="flow-text lime-text text-lighten-1">
         <%= i18n.t('app.missed') %>
-        <a href='https://pbesteu.github.io/poi-quick-app/' class="lime lighten-4"><%= i18n.t('app.get_involved') %></a>
+        <a href='https://pbesteu.github.io/poi-quick-app/' class="lime lighten-1"><%= i18n.t('app.get_involved') %></a>
       </p>
     </div>  
   </div>

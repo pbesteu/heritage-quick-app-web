@@ -1,6 +1,6 @@
 module.exports = {
     app: {
-        title: 'Heritage in…',
+        title: 'Heritage_in…',
         implementations: 'Aktuelle implementierungen des projekts',
         quickapp: 'Möchten Sie die Quick-App-Version ausprobieren?',
         missed: 'Vermissen sie etwas?',
