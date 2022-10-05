@@ -61,10 +61,16 @@ module.exports = async function (fastify, opts) {
         fastify.i18n.replace(polyglot.phrases);
       }
 
+      // Intersection of languages in db and interface
+      const availableLanguages =  availableLocalesDatabase.filter((n) => {
+        return availableLocalesServer.indexOf(n) >= 0;
+      });
+      
       const templateParams = {
         i18n: fastify.i18n, 
         meta: json.meta,
         url, 
+        availableLanguages,
         content: {},  // set later
         identifier: id
       }; 
