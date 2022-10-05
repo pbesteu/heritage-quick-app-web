@@ -20,10 +20,11 @@ module.exports = {
         lets_go: 'lass uns gehen',
     },
     lang: {
-        en: 'Englisch',
+        en: 'English',
         de: 'Deutsch',
-        es: 'Spanisch',
-        fr: 'Französisch',
+        es: 'Español',
+        fr: 'Francais',
+        zh: '中国人',
     },    
     cards: {
         end: 'Du hast alle artikel gesehen 🫠',

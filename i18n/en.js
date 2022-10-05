@@ -10,9 +10,10 @@ module.exports = {
     },
     lang: {
         en: 'English',
-        de: 'German',
-        es: 'Spanish',
-        fr: 'French',
+        de: 'Deutsch',
+        es: 'Español',
+        fr: 'Francais',
+        zh: '中国人',
     },
     index : {
         map: 'Map',
