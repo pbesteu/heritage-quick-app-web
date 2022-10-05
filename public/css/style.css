@@ -129,7 +129,7 @@ ul.tabs {
   }  
 
   #osm, #cards {
-    height: calc(100vh - 58px - 47px - 32px);
+    height: calc(100vh - 65px - 47px - 32px);
   }
 
   .card .card-content {
@@ -181,7 +181,7 @@ p.permalink {
 
 @media only screen and (max-width: 992px) {
   .modal.modal-detail,
-  .modal#modalabout {
+  .modal#modal-about {
     width: 70%;
     max-width: 600px;
     height: 90%;
@@ -196,7 +196,7 @@ p.permalink {
 
 @media only screen and (max-width: 600px) {
   .modal.modal-detail,
-  .modal#modalabout {
+  .modal#modal-about {
     width: 95%;
     max-width: 95%;
     height: 98%;

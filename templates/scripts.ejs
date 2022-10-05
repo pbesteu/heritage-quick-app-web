@@ -67,9 +67,9 @@
     $('.modal-detail').modal({dismissible:true, preventScrolling: true, onOpenEnd: initModalDetail});
     $('#modal-init').modal({dismissible:false, opacity: 0.8, preventScrolling: true});
     $('#modal-intro-geolocation').modal({dismissible:false, opacity: 0.8, preventScrolling: true });
-    $('#modalabout').modal({dismissible:false, preventScrolling: true});
+    $('#modal-about').modal({dismissible:false, preventScrolling: true});
+    $('#modal-lang').modal({dismissible:true});
     $('.tabs').tabs({ onShow: invalidateSizeMap} );
-    $('.dropdown-trigger').dropdown();
   }
 
   function initModalDetail() {
@@ -245,7 +245,7 @@
   function locateUserAndInitPois() {
     // Activates the loading indicator
     $('#modal-intro-geolocation .loading-app').addClass('active');
-    
+
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
         // console.log(position.coords.latitude + " " + position.coords.longitude);

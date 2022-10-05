@@ -46,6 +46,10 @@ module.exports = {
         github: 'Github Repository',
         close: 'Close',
     },
+    lang_modal: {
+        title: 'Select language',
+        close: 'Close',
+    },
     map: {
         details: 'Details',
         directions: 'Directions',    },

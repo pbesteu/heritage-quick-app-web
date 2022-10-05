@@ -55,6 +55,10 @@ module.exports = {
         something_wrong: 'ehem... Irgendwas stimmt nicht',
         go_home: "Lesen sie weitere Informationen zu diesem projekt",
     },
+    lang_modal: {
+        title: 'Sprache auswählen',
+        close: 'Schließen',
+    },    
     attributions: 'Error cover photo by Ricardo Gomez Angel on Unsplash',
     by: 'Quick App Initiative',
 }

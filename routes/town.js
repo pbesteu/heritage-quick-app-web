@@ -65,13 +65,14 @@ module.exports = async function (fastify, opts) {
       const availableLanguages =  availableLocalesDatabase.filter((n) => {
         return availableLocalesServer.indexOf(n) >= 0;
       });
-      
+
       const templateParams = {
         i18n: fastify.i18n, 
         meta: json.meta,
         url, 
         availableLanguages,
         content: {},  // set later
+        locale,
         identifier: id
       }; 
 
