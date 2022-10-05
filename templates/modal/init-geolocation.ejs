@@ -4,6 +4,19 @@
       <p class="white-text right-align">
         <%= i18n.t('index.geolocation_permission') %>
       </p>
+      <div class="white-text center-align">
+        <div class="loading-app preloader-wrapper small">
+          <div class="spinner-layer spinner-yellow-only">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div><div class="gap-patch">
+              <div class="circle"></div>
+            </div><div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+        </div>
+      </div> 
       <p class="center-align"><a onclick="locateUserAndInitPois()" class="waves-effect waves-light btn-large lime lighten-1 black-text">
         <i class="material-icons left">gps_fixed</i><%= i18n.t('index.lets_go') %></a>
       </p>
