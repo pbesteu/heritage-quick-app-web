@@ -9,10 +9,18 @@ module.exports.options = {}
 module.exports = async function (fastify, opts) {
   // Place here your custom code!
 
-  // public resources under public/ dir  
-  fastify.register(require('@fastify/static'), {
+  // Static resources
+  const fastifyStatic = require('@fastify/static')
+  // /public
+  fastify.register(fastifyStatic, {
     root: path.join(__dirname, 'public'),
-    prefix: '/public/', // optional: default '/'
+    prefix: '/public/',
+  })
+  // /node_modules
+  fastify.register(fastifyStatic, {
+    root: path.join(__dirname, 'node_modules'),
+    prefix: '/lib/',
+    decorateReply: false
   })
 
   fastify.register(require("@fastify/view"), {

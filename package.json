@@ -30,7 +30,9 @@
     "fastify-plugin": "^4.0.0",
     "fastify-polyglot": "^1.0.0",
     "geolib": "^3.3.3",
-    "leaflet": "^1.9.1",
+    "leaflet": "^1.9.2",
+    "leaflet.locatecontrol": "^0.76.1",
+    "materialize-css": "^1.0.0-rc.2",
     "node-polyglot": "^2.4.2"
   },
   "devDependencies": {

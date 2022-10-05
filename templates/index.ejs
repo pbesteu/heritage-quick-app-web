@@ -8,13 +8,13 @@
   <link rel="apple-touch-icon" href="/public/images/logo192.png">
   <link rel="manifest" href="/manifest/manifest.json?name=<%= encodeURIComponent(meta.app_title) %>&start_url=<%= encodeURIComponent(url) %>&theme_color=<%= encodeURIComponent(content.app.theme.brand) %>">
   <!-- Leaflet -->
-  <link href="/public/maps/leaflet/leaflet.css" rel="stylesheet">
-  <link href="/public/maps/leaflet-control/L.Control.Locate.min.css" rel="stylesheet">
-  <script src="/public/maps/leaflet/leaflet.js" charset="utf-8"></script>
-  <script src="/public/maps/leaflet-control/L.Control.Locate.min.js" charset="utf-8"></script>
+  <link href="/lib/leaflet/dist/leaflet.css" rel="stylesheet">
+  <link href="/lib/leaflet.locatecontrol/dist/L.Control.Locate.min.css" rel="stylesheet">
+  <script src="/lib/leaflet/dist/leaflet.js" charset="utf-8"></script>
+  <script src="/lib/leaflet.locatecontrol/dist/L.Control.Locate.min.js" charset="utf-8"></script>
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="/public/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="/lib/materialize-css/dist/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="/public/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <!-- Service worker registration -->
   <%- include('service-worker') %>
@@ -70,9 +70,9 @@
   <%- include('footer') %>
   
   <!--  Scripts-->
-  <script src="/public/js/jquery-2.1.1.min.js"></script>
-  <script src="/public/js/materialize.min.js"></script>
-  <script src="/public/js/geolib.js"></script>  
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+  <script src="/lib/materialize-css/dist/js/materialize.min.js"></script>
+  <script src="/lib/geolib/lib/index.js"></script>  
   <%- include('scripts', { pois: content.pois, app: content.app } ) %>
   <%- include('map', { pois: content.pois, color: 'red' }); %>
   
