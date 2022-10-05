@@ -34,6 +34,82 @@ module.exports = async function (fastify, opts) {
     }
   }
 
+  /**
+   * Finds the closest match of language code preferred by the user agent for
+   * the User Interface (i18n in the server).
+   * First try to force using the ´lang´ param. If there is no close match, 
+   * it tries with the HTTP header. 
+   * 
+   * @param { object } args. Containing the 
+   *  acceptLangHeader (accept-language HTTP header received), 
+   *  locale (the locale included in the url, so the priority)
+   *  availableLocalesServer (array of lang codes available for the UI), 
+   */
+  function getClosestLocaleForUI(args) {
+
+    const { acceptLangHeader, locale, availableLocalesServer } = args;
+
+    const langParser = require('accept-language-parser');
+
+    let localeSelected = null;  // Initially null
+
+    // The UI of the App
+    // First checks if the user forces the locale (as param)
+    if (locale) {
+      localeSelected = langParser.pick(availableLocalesServer, `${locale};q=0.9`);
+    }
+    // not found or not locale passed, so it tries using the accept-language header
+    if (!localeSelected) {
+      localeSelected = langParser.pick(availableLocalesServer, acceptLangHeader);
+    }
+    // not found, it uses the locale by default (otherwise 'en')
+    if (!localeSelected) {
+      localeSelected = fastify.i18n.defaultLocale? fastify.i18n.defaultLocale: 'en';
+    }
+    // Generates new phrases to be loaded in i18n (replacing the previous locales)
+    const polyglot = new Polyglot({phrases: fastify.i18n.locales[localeSelected], locale: localeSelected });
+    fastify.i18n.replace(polyglot.phrases);
+    fastify.i18n.locale(localeSelected);
+
+    return localeSelected;
+  }
+
+  /**
+   * Finds the closest match of language code preferred by the user agent
+   * for the database (content in JSON).
+   * First try to force using the ´lang´ param. If there is no close match, 
+   * it tries with the HTTP header. 
+   * 
+   * @param { object } args. Containing the 
+   *  acceptLangHeader (accept-language HTTP header received), 
+   *  locale (the locale included in the url, so the priority)
+   *  availableLocalesDatabase (array of lang codes available for the DB)
+   */
+   function selectClosestLocaleForDatabase(args) {
+
+    const { acceptLangHeader, locale, availableLocalesDatabase } = args;
+
+    const langParser = require('accept-language-parser');
+
+    let localeSelected = null;  // Initially null
+
+    // The UI of the App
+    // First checks if the user forces the locale (as param)
+    if (locale) {
+      localeSelected = langParser.pick(availableLocalesDatabase, `${locale};q=0.9`);
+    }
+    // not found or not locale passed, so it tries using the accept-language header
+    if (!localeSelected) {
+      localeSelected = langParser.pick(availableLocalesDatabase, acceptLangHeader);
+    }
+    // not found, it uses the locale by default ('en'). Otherwise, or the first key in the content
+    if (!localeSelected) {
+      localeSelected = availableLocalesDatabase.includes('en')? 'en' : availableLocalesDatabase[0];
+    }
+    return localeSelected;
+  }
+
+
   fastify.get('/town/:locale', options, async (request, reply) => {
     const { url, id } = request.query;
     const { locale } = request.params;
@@ -44,48 +120,44 @@ module.exports = async function (fastify, opts) {
         throw new Error(`Bad response from server fetching the app document: ${url}`);
       }
       const json = await res.json();
+
+
       
       // Check the locale in the param (checks if there is a i18n resource with that locale)
       const availableLocalesServer = Object.keys(fastify.i18n.locales);
       const availableLocalesDatabase = Object.keys(json.content);
-      // First checks if the user forces the locale (as param)
-      if (locale && availableLocalesServer.includes(locale)) {
-        // Generates new phrases to be loaded in i18n (replacing the previous locales)
-        const polyglot = new Polyglot({phrases: fastify.i18n.locales[locale], locale });
-        fastify.i18n.replace(polyglot.phrases);
-        fastify.i18n.locale(locale);
-      } else {
-        // reload the phrases by default
-        fastify.i18n.locale(fastify.i18n.defaultLocale);
-        const polyglot = new Polyglot({phrases: fastify.i18n.locales[fastify.i18n.defaultLocale], locale: fastify.i18n.defaultLocale });
-        fastify.i18n.replace(polyglot.phrases);
-      }
 
-      // Intersection of languages in db and interface
+      const preferredLocaleUI = getClosestLocaleForUI({ 
+        locale, 
+        acceptLangHeader: request.headers['accept-language'], 
+        availableLocalesServer
+      });
+
+      const preferredLocaleDB = selectClosestLocaleForDatabase({ 
+        locale, 
+        acceptLangHeader: request.headers['accept-language'], 
+        availableLocalesDatabase
+      });
+
+      // Available languages for the user: the intersection of languages in DB and UI
       const availableLanguages =  availableLocalesDatabase.filter((n) => {
         return availableLocalesServer.indexOf(n) >= 0;
       });
 
-      const templateParams = {
-        i18n: fastify.i18n, 
-        meta: json.meta,
-        url, 
-        availableLanguages,
-        content: {},  // set later
-        locale,
-        identifier: id
-      }; 
-
-      // If there is this locale in the database file, we select it
-      if (locale && availableLocalesDatabase.includes(locale)) {
-        templateParams.content = json.content[locale];
-      } else {
-        // By default, it will serve 'en' or the first locale found
-        templateParams.content = availableLocalesDatabase.includes('en')? json.content['en'] : json.content[Object.keys(json.content)[0]];
-      }
       // Send tracking call 
       track(json.meta.matomo_base_url, url);
-      return reply.view('/templates/index.ejs', templateParams);
+
+      return reply.view('/templates/index.ejs', 
+        {
+          i18n: fastify.i18n, 
+          meta: json.meta,
+          url, 
+          availableLanguages,
+          content: json.content[preferredLocaleDB],
+          locale: preferredLocaleUI,
+          identifier: id
+        }
+      );
     } catch (err) {
       return reply.view('/templates/error.ejs', { 
         i18n: fastify.i18n, 
