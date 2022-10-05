@@ -33,9 +33,9 @@ main {
   width: 100%;
 }
 
-.card-distance {
+.card-content p.card-distance {
   margin-top: -1em;
-  font-size: smaller;
+  font-size: 70%;
   color: darkgrey;
 }
 
@@ -64,7 +64,13 @@ footer.page-footer {
   vertical-align: middle;
   margin: 0;
   padding: 0;
+}
+
+.btn-quickapp {
+  bottom: 56px;
+  right: 10px;
 }  
+
 
 footer.page-footer div {
   padding: 0;
@@ -94,6 +100,10 @@ ul.tabs {
   height: calc(100vh - 64px - 48px - 48px);
 }
 
+.btn-quickapp {
+  position: fixed;
+}
+
 @media only screen and (max-width: 992px) {
   nav .brand-logo {
     position: absolute;
@@ -112,6 +122,12 @@ ul.tabs {
     font-size: small;
   }
 
+  .btn-quickapp {
+    position: fixed;
+    bottom: 37px;
+    right: 5px;
+  }  
+
   #osm, #cards {
     height: calc(100vh - 58px - 47px - 32px);
   }
@@ -126,7 +142,7 @@ ul.tabs {
 @media only screen and (max-width: 600px) {
   #osm, #cards {
     height: calc(100vh - 58px - 46px - 32px);
-  } 
+  }
 }
 
 /* Modals with the details */
@@ -175,7 +191,7 @@ p.permalink {
   #modal-init {
     top: 5% !important;
     height: 90%;
-  }  
+  }
 }
 
 @media only screen and (max-width: 600px) {
@@ -187,4 +203,66 @@ p.permalink {
     max-height: 98%;
     top: 1% !important;
   }
+  .card-item {
+    height: auto;
+  } 
 }
+
+/* Size of cards */
+
+@media only screen and (min-width: 600px) {
+  .card.card-item {
+    position: relative;
+    overflow: hidden;
+  }
+  .card.card-item .card-image {
+    max-height: 60%;
+    overflow: hidden;  
+  }  
+  .card.card-item .card-content {
+    max-height: 40%;
+    overflow: hidden;
+  }
+  .card-item .card-action {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+  .card.card-item .card-image img {
+    object-fit: cover;
+    width: 100%;
+  }
+}
+
+
+@media only screen and (min-width: 600px) and (max-width: 992px) {
+  .card.card-item {
+    height: 300px;
+  }
+  .card.card-item .card-image {
+    height: 180px;
+  }  
+  .card.card-item .card-content {
+    height: 120px;
+  }
+  .card.card-item .card-image img {
+    height: 180px;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .card.card-item {
+    height: 400px;
+  }
+  .card.card-item .card-image {
+    height: 240px;
+  }  
+  .card.card-item .card-content {
+    height: 160px;
+  }
+  .card.card-item .card-image img {
+    height: 240px;
+  }
+}
+

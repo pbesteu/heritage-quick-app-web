@@ -29,7 +29,7 @@ module.exports = {
         end: 'You have seen all the items 🫠',
         details: 'Details',
         on_map: 'Location',
-        distance: ' from your location',
+        distance: ' from you',
         thanks: 'Acknowledgements:',
         permalink: 'Permalink',
     },

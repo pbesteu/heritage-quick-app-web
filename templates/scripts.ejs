@@ -23,9 +23,9 @@
     pois.forEach((poi) => {
       $( `#${containerId}` )
       .append( $( "<div class='col s12 m6 l4 xl3'>" )
-        .append( $( "<div class='card small hoverable'></div>" )
+        .append( $( "<div class='card card-item hoverable'></div>" )
           .append( $( "<div class='card-image'></div>" ).attr( "onclick", `populateOpenDetailDialog('${poi.id}')` )
-            .append( $( "<img class='responsive-img'/>" )
+            .append( $( "<img/>" )
               .attr( "src" , ((poi.images.length) > 0)? poi.images[0] : "/public/images/placeholder.jpg")
               .attr( "alt" , poi.name )
             )
@@ -221,10 +221,10 @@
 
   function showQuickAppOptions() {
     if (uaSupportsQuickApp(navigator.userAgent.toLowerCase())) {
-      $('.quick-app-link').show();
+      $('.btn-quickapp').show();
       $('#modal-quickapp').modal('open');
     } else {
-      $('.quick-app-link').hide();
+      $('.btn-quickapp').hide();
     }
   }
 
