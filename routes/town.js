@@ -25,15 +25,6 @@ module.exports = async function (fastify, opts) {
   // const Ajv = require('ajv');
   // const validate = new Ajv().compile(jsonSchema);
 
-  const options = {
-    schema: {
-      query: {
-        url: { type: 'string' },
-        id: { type: 'string' }
-      }
-    }
-  }
-
   /**
    * Finds the closest match of language code preferred by the user agent for
    * the User Interface (i18n in the server).
@@ -85,12 +76,10 @@ module.exports = async function (fastify, opts) {
    *  locale (the locale included in the url, so the priority)
    *  availableLocalesDatabase (array of lang codes available for the DB)
    */
-   function selectClosestLocaleForDatabase(args) {
+   const selectClosestLocaleForDatabase = (args) => {
 
     const { acceptLangHeader, locale, availableLocalesDatabase } = args;
-
     const langParser = require('accept-language-parser');
-
     let localeSelected = null;  // Initially null
 
     // The UI of the App
@@ -109,44 +98,51 @@ module.exports = async function (fastify, opts) {
     return localeSelected;
   }
 
+  const optionsTown = {
+    schema: {
+      query: {
+        url: { type: 'string' },
+        id: { type: 'string' }
+      },
+      params: {
+        locale: { type: 'string' }
+      }
+    },
+    ignoreTrailingSlash: true
+  }
 
-  fastify.get('/town/:locale', options, async (request, reply) => {
-    const { url, id } = request.query;
-    const { locale } = request.params;
-
+  const getViewFromTownUrl = async (url, locale, id, request, reply) => {
     try {
       const res = await fetch(url);
       if (res.status >= 400) {
         throw new Error(`Bad response from server fetching the app document: ${url}`);
       }
       const json = await res.json();
-
-
       
       // Check the locale in the param (checks if there is a i18n resource with that locale)
       const availableLocalesServer = Object.keys(fastify.i18n.locales);
       const availableLocalesDatabase = Object.keys(json.content);
-
+  
       const preferredLocaleUI = getClosestLocaleForUI({ 
         locale, 
         acceptLangHeader: request.headers['accept-language'], 
         availableLocalesServer
       });
-
+  
       const preferredLocaleDB = selectClosestLocaleForDatabase({ 
         locale, 
         acceptLangHeader: request.headers['accept-language'], 
         availableLocalesDatabase
       });
-
+  
       // Available languages for the user: the intersection of languages in DB and UI
       const availableLanguages =  availableLocalesDatabase.filter((n) => {
         return availableLocalesServer.indexOf(n) >= 0;
       });
-
+  
       // Send tracking call 
       track(json.meta.matomo_base_url, url);
-
+  
       return reply.view('/templates/index.ejs', 
         {
           i18n: fastify.i18n, 
@@ -158,6 +154,17 @@ module.exports = async function (fastify, opts) {
           identifier: id
         }
       );
+    } catch (e) {
+      throw new Error(e);
+    }
+  };
+
+  fastify.get('/town/:locale?/', optionsTown, async (request, reply) => {
+    const { url, id } = request.query;
+    const { locale } = request.params;
+
+    try {
+      return await getViewFromTownUrl(url, locale, id, request, reply);
     } catch (err) {
       return reply.view('/templates/error.ejs', { 
         i18n: fastify.i18n, 
@@ -165,6 +172,52 @@ module.exports = async function (fastify, opts) {
       });
     }
   })
-  
+
+  const optionsShortcut = {
+    schema: {
+      query: {
+        id: { type: 'string' }
+      },
+      params: {
+        townId: { type: 'string' },
+        locale: { type: 'string' }
+      }
+    },
+    ignoreTrailingSlash: true
+  }
+
+  /**
+   * Shortcut based on the existing implementations
+   */
+   fastify.get('/_/:townId/:locale?/', optionsShortcut, async (request, reply) => {
+    const { townId, locale } = request.params;
+    const { id } = request.query;
+
+    try {
+      const implementations = require ('../data/implementations');
+      
+      // The document has the following structure:
+      // "towns" : [
+      //   { 
+      //     "name": "LVN Street Heritage",
+      //     "id": "leuven",
+      //     "location": "Leuven (🇧🇪)",
+      //     "source_url": "https://pbesteu.github.io/cultural-heritage-quick-app/be/leuven/data.json",
+      //     "country": "Belgium",
+      //     "lang": [ "en" ]
+      //   },
+
+      const implementation = implementations.towns.find(town => town.id === townId);
+      if (!implementation) {
+        throw new Error('No implementation found');
+      }
+      return await getViewFromTownUrl(implementation.source_url, locale, id, request, reply);
+    } catch (err) {
+      return reply.view('/templates/error.ejs', { 
+        i18n: fastify.i18n, 
+        message: err.toString()
+      });
+    }
+   })
 
 }
