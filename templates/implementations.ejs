@@ -18,7 +18,7 @@
       <div class="collection">
         <% json.towns.forEach((town) => { %>
           <% town.lang.forEach((iso) => { %>
-            <a class="collection-item" href="/_/<%= encodeURIComponent(town.id) %>/<%= encodeURIComponent(iso) %>/">
+            <a class="collection-item" href="/<%= encodeURIComponent(town.id) %>/<%= encodeURIComponent(iso) %>/">
               <%= town.name %> - <%= town.location %> - <%= i18n.t(`lang.${iso}`) %>
             </a>
           <% }) %>  

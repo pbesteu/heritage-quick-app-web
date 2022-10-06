@@ -19,12 +19,13 @@ module.exports = async function (fastify, opts) {
    */
 
    fastify.get('/manifest/manifest.json', options, async (request, reply) => {
-    const { start_url, name, theme_color } = request.query;
+    const { town_id, start_url, name, theme_color } = request.query;
     try {
       if (!start_url && !name && !theme_color) {
         throw new Error('No parameters found');
       }  
       const templateParams = {
+        town_id,
         theme_color,
         start_url,
         name,

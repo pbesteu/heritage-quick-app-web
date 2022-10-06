@@ -111,7 +111,7 @@ module.exports = async function (fastify, opts) {
     ignoreTrailingSlash: true
   }
 
-  const getViewFromTownUrl = async (url, locale, id, request, reply) => {
+  const getViewFromTownUrl = async (url, locale, id, townId, request, reply) => {
     try {
       const res = await fetch(url);
       if (res.status >= 400) {
@@ -147,7 +147,8 @@ module.exports = async function (fastify, opts) {
         {
           i18n: fastify.i18n, 
           meta: json.meta,
-          url, 
+          url,
+          townId, 
           availableLanguages,
           content: json.content[preferredLocaleDB],
           locale: preferredLocaleUI,
@@ -159,12 +160,12 @@ module.exports = async function (fastify, opts) {
     }
   };
 
-  fastify.get('/town/:locale?/', optionsTown, async (request, reply) => {
+  fastify.get('/_/:locale?/', optionsTown, async (request, reply) => {
     const { url, id } = request.query;
     const { locale } = request.params;
 
     try {
-      return await getViewFromTownUrl(url, locale, id, request, reply);
+      return await getViewFromTownUrl(url, locale, id, null, request, reply);
     } catch (err) {
       return reply.view('/templates/error.ejs', { 
         i18n: fastify.i18n, 
@@ -189,7 +190,7 @@ module.exports = async function (fastify, opts) {
   /**
    * Shortcut based on the existing implementations
    */
-   fastify.get('/_/:townId/:locale?/', optionsShortcut, async (request, reply) => {
+   fastify.get('/:townId/:locale?/', optionsShortcut, async (request, reply) => {
     const { townId, locale } = request.params;
     const { id } = request.query;
 
@@ -211,7 +212,7 @@ module.exports = async function (fastify, opts) {
       if (!implementation) {
         throw new Error('No implementation found');
       }
-      return await getViewFromTownUrl(implementation.source_url, locale, id, request, reply);
+      return await getViewFromTownUrl(implementation.source_url, locale, id, townId, request, reply);
     } catch (err) {
       return reply.view('/templates/error.ejs', { 
         i18n: fastify.i18n, 

@@ -24,7 +24,7 @@ module.exports = {
         loading: '寻找你周围有趣的地方......',
         feedback:'评论？',
         geolocation_permission: '这个应用程序使用您估计的位置来推荐附近最近的有趣的地方。请单击以继续并接受浏览器的对话框。',
-        let_go: '我们走吧',
+        lets_go: '我们走吧',
     },
     cards:{
         end: '你已经看过所有的物品 🫠',
