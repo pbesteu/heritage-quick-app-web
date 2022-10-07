@@ -13,21 +13,21 @@ module.exports = async function (fastify, opts) {
   }
   /**
    * Generates a manifest.json based on the parameters in the querystring:
-   * start_url (start_url), 
+   * town_id and locale (to generate start_url), 
    * theme_color (theme_color)
    * name (name and short_name)
    */
 
    fastify.get('/manifest/manifest.json', options, async (request, reply) => {
-    const { town_id, start_url, name, theme_color } = request.query;
+    const { town_id, locale, name, theme_color } = request.query;
     try {
-      if (!start_url && !name && !theme_color) {
+      if (!locale && !name && !theme_color) {
         throw new Error('No parameters found');
       }  
       const templateParams = {
         town_id,
         theme_color,
-        start_url,
+        locale,
         name,
       };
       reply.header('Content-Type', 'application/json; charset=utf-8') 
