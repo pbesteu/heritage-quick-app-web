@@ -21,9 +21,9 @@ module.exports = {
         quickapp: 'QuickApp',
         about: 'About',
         welcome: 'Welcome to %{title}',
-        loading: 'Finding the interesting places around you...',
+        loading: 'Finding interesting places around you...',
         feedback: 'Comments?',
-        geolocation_permission: 'This app uses your estimated location to suggest the nearest interesting places around. Please, click to continue and accept the dialog of your browser.',
+        geolocation_permission: 'This app uses your estimated location to suggest the nearest interesting places around. Please, enable the geolocation, click to continue and accept the dialog of your browser.',
         lets_go: 'Let\'s go',
     },
     cards: {
