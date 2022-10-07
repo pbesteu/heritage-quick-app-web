@@ -179,9 +179,9 @@
     // it could be either "/_/lang?url..." or "/place_id/"
     if (window.location.href.indexOf('url=')>=0) {
       // So it appends the url parameter
-      return `${window.location.href.split("?")[0]}?url=${encodeURIComponent(dataUrl)}&id=${id}`;
+      return `${(window.location.href.split("?")[0]).replace('#', '')}?url=${encodeURIComponent(dataUrl)}&id=${id}`;
     } // Otherwise just add the Id
-    return `${window.location.href.split("?")[0]}?id=${id}`;
+    return `${(window.location.href.split("?")[0]).replace('#', '')}?id=${id}`;
   }
 
   function shareDetails({ name, description, id }) {
