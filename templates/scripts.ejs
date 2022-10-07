@@ -9,6 +9,8 @@
   var pois = [];
   var dataUrl = '<%= url %>';
   var issue_url = '<%= app.issue_url %>';
+  var townId = '<%= townId %>';
+  var locale = '<%= locale %>';
   
   // Populate all the pois into the global "pois" variable    
   <% pois.forEach(function(poi) { %>
@@ -176,12 +178,11 @@
   }
 
   function getPermalink(id) {
-    // it could be either "/_/lang?url..." or "/place_id/"
-    if (window.location.href.indexOf('url=')>=0) {
-      // So it appends the url parameter
-      return `${(window.location.href.split("?")[0]).replace('#', '')}?url=${encodeURIComponent(dataUrl)}&id=${id}`;
-    } // Otherwise just add the Id
-    return `${(window.location.href.split("?")[0]).replace('#', '')}?id=${id}`;
+    // it could be either "/_/lang?url..." or "/town_id/"
+    if (townId && townId.length>0) {
+      return `${(window.location.protocol)}//${(window.location.host)}/${townId}/${locale}/?id=${id}`;
+    } else  
+    return `${(window.location.protocol)}//${(window.location.host)}/_/${locale}/?url=${encodeURIComponent(dataUrl)}&id=${id}`;
   }
 
   function shareDetails({ name, description, id }) {
