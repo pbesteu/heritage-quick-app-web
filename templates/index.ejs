@@ -8,7 +8,7 @@
   <meta name="theme-color" content="<%= content.app.theme.brand %>" />
   <link rel="apple-touch-icon" href="/public/images/logo192.png">
   <% if (townId) { %>
-  <link rel="manifest" href="/manifest/manifest.json?town_id=<%= encodeURIComponent(townId) %>&name=<%= encodeURIComponent(meta.app_title) %>&start_url=<%= encodeURIComponent(url) %>&theme_color=<%= encodeURIComponent(content.app.theme.brand) %>">
+  <link rel="manifest" href="/manifest/manifest.json?town_id=<%= encodeURIComponent(townId) %>&name=<%= encodeURIComponent(meta.app_title) %>&locale=<%= locale %>&theme_color=<%= encodeURIComponent(content.app.theme.brand) %>">
   <% } %>
   <!-- Leaflet -->
   <link href="/lib/leaflet/dist/leaflet.css" rel="stylesheet">
