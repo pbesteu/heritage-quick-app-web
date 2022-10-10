@@ -10,7 +10,7 @@
                 <div class="collection">
                     <% availableLanguages.forEach((lang) => { %>
                         <% if (lang !== locale) { %>
-                        <a class="collection-item" href="/town/<%= lang%>?url=<%= encodeURIComponent(url) %>" title="Relaunch the app in <%= i18n.t(`lang.${lang}`) %>">
+                        <a class="collection-item" href="/_/<%= lang%>/?url=<%= encodeURIComponent(url) %>" title="Relaunch the app in <%= i18n.t(`lang.${lang}`) %>">
                             <%= i18n.t(`lang.${lang}`) %>
                         </a>
                         <% } else { %>
