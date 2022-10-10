@@ -14,6 +14,7 @@ module.exports = {
         es: 'Español',
         fr: 'Francais',
         zh: '中国人',
+        ca: 'Català',
     },
     index : {
         map:'地图',
