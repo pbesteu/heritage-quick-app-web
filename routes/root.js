@@ -3,10 +3,12 @@
 
 module.exports = async function (fastify, opts) {
 
-  const implementations = require ('../data/implementations')
 
   fastify.get('/', async (request, reply) => {
-    try {
+    var fs = require('fs')
+    const path = require('path')
+      try {
+      const implementations = JSON.parse(fs.readFileSync(path.join(__dirname, '../data', 'implementations.json'), 'utf8'));
       return reply.view('/templates/implementations.ejs', { json: implementations, i18n: fastify.i18n })
     } catch (err) {
       return reply.view('/templates/error.ejs', { 
