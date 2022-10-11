@@ -3,9 +3,10 @@ module.exports = {
         title: 'Heritage_in…',
         quickapp: 'Would you like to try the Quick App version?',
         implementations: 'Current implementations of the project',
-        missed: 'Missing anything?',
+        missed: 'Missing anything? Would you like to improve it?',
         get_involved: 'Get involved now!',
         okay: 'Yes, open it!',
+        about: 'Read more about this project',
         no: 'No',
     },
     lang: {

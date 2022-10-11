@@ -3,9 +3,10 @@ module.exports = {
         title: 'Heritage_in...',
         quickapp: '你想试试快应用版本吗？',
         implementations: '项目的当前实现',
-        missed: '错过了什么？',
+        missed: '错过了什么？您想改进内容吗？',
         get_involved: '现在就参与进来！',
         okay:'是的,打开它！',
+        about: '阅读有关此项目的更多信息',
         no: '不',
     },
     lang:{
