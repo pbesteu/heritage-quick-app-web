@@ -59,7 +59,8 @@ module.exports = {
     error: {
         error: 'Error',
         something_wrong: 'ejem... Alguna cosa va malament',
-        go_home: "Llegeix més sobre aquest projecte",
+        go_home: 'Proveu altres opcions',
+        not_found: 'No trobo la pàgina',
     },
     attributions: 'Foto de fons per Ricardo Gomez Angel on Unsplash',
     by: 'Powered by Quick App Initiative',

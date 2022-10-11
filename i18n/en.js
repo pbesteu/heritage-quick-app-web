@@ -59,7 +59,8 @@ module.exports = {
     error: {
         error: 'Error',
         something_wrong: 'ehem... Something is wrong',
-        go_home: "Read more info about this project",
+        go_home: 'Try other options',
+        not_found: 'I cannot find the page you referred'
     },
     attributions: 'Error cover photo by Ricardo Gomez Angel on Unsplash',
     by: 'Powered by Quick App Initiative',

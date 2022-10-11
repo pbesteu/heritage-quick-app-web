@@ -56,7 +56,8 @@ module.exports = {
     error: {
         error: 'Fehler',
         something_wrong: 'ehem... Irgendwas stimmt nicht',
-        go_home: "Lesen sie weitere Informationen zu diesem projekt",
+        go_home: 'Probieren sie andere optionen aus',
+        not_found: 'Ich kann die von ihnen angegebene seite nicht finden',
     },
     lang_modal: {
         title: 'Sprache auswählen',

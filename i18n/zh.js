@@ -59,7 +59,8 @@ module.exports = {
     error: {
         error:'错误',
         something_wrong: ':( 出了点问题',
-        go_home: "阅读更多关于这个项目的信息",
+        go_home: '尝试其他选项',
+        not_found: '我找不到您引用的页面',
     },
     attributions: 'Ricardo Gomez Angel 在 Unsplash 上的错误封面照片',
     by: 'Powered by Quick App Initiative',
