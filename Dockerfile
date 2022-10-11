@@ -15,6 +15,9 @@ RUN npm install
 # Bundle app source
 COPY . /usr/src/app
 
+# Updates the latest version of the implementations.json document
+ADD https://pbest.eu/poi-quick-app/implementations.json /usr/src/app/data/
+
 EXPOSE 3000
 
 CMD npm run start

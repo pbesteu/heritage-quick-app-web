@@ -5,8 +5,8 @@
 
  module.exports = 
  {
-  "version": 3,
-  "updated": "2022-10-07",
+  "version": 2,
+  "updated": "2022-09-07",
   "towns" : [
     { 
       "name": "LVN Street Heritage",
