@@ -27,6 +27,7 @@ module.exports = {
         fr: 'Francais',
         zh: '中国人',
         ca: 'Català',
+        nl: 'Nederlands',
     },    
     cards: {
         end: 'Du hast alle artikel gesehen 🫠',
