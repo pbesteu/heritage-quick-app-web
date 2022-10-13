@@ -28,6 +28,7 @@
     var poiLayer = L.featureGroup().addTo(map);
 
     function openDirections(poiLon, poiLat, title) {
+      //var urlDirections = `https://www.google.com/maps/dir/?api=1&origin=${myPosition.lat},${myPosition.lon}&destination=${poiLat},${poiLon}&dir_action=navigate&travelmode=walking`;
       var urlDirections = `https://www.petalmaps.com/nav/${myPosition.lon},${myPosition.lat}/${poiLon},${poiLat}/My%20location/${encodeURIComponent(title)}/walk`;
       window.open(urlDirections, '_blank');
     }
