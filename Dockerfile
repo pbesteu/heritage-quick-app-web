@@ -16,7 +16,7 @@ RUN npm install
 COPY . /usr/src/app
 
 # Updates the latest version of the implementations.json document
-ADD https://pbest.eu/poi-quick-app/implementations.json /usr/src/app/data/
+ADD https://ow2-quick-app-initiative.github.io/poi-quick-app/implementations.json /usr/src/app/data/
 
 EXPOSE 3000
 
