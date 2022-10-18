@@ -63,6 +63,6 @@ module.exports = {
         go_home: '尝试其他选项',
         not_found: '我找不到您引用的页面',
     },
-    attributions: 'Ricardo Gomez Angel 在 Unsplash 上的错误封面照片',
+    attributions: 'DALL.E 上的错误封面照片',
     by: 'Powered by Quick App Initiative',
 }

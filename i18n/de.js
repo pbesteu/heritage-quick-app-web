@@ -64,6 +64,6 @@ module.exports = {
         title: 'Sprache auswählen',
         close: 'Schließen',
     },    
-    attributions: 'Error cover photo by Ricardo Gomez Angel on Unsplash',
+    attributions: 'Error cover photo by DALL.E',
     by: 'Quick App Initiative',
 }

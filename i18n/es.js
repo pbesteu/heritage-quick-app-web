@@ -63,6 +63,6 @@ module.exports = {
         go_home: 'Prueba otras opciones',
         not_found: 'No encontré la página que buscas'
     },
-    attributions: 'Foto de fondo por Ricardo Gomez Angel on Unsplash',
+    attributions: 'Foto de fondo por DALL.E',
     by: 'Powered by Quick App Initiative',
 }

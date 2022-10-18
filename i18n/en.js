@@ -63,6 +63,6 @@ module.exports = {
         go_home: 'Try other options',
         not_found: 'I cannot find the page you referred'
     },
-    attributions: 'Error cover photo by Ricardo Gomez Angel on Unsplash',
+    attributions: 'Error cover photo by DALL.E',
     by: 'Powered by Quick App Initiative',
 }

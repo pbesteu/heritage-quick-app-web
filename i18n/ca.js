@@ -63,6 +63,6 @@ module.exports = {
         go_home: 'Proveu altres opcions',
         not_found: 'No trobo la pàgina',
     },
-    attributions: 'Foto de fons per Ricardo Gomez Angel on Unsplash',
+    attributions: 'Foto de fons: DALL.E',
     by: 'Powered by Quick App Initiative',
 }
