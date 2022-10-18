@@ -1,10 +1,10 @@
 # Heritage in… for the Web
 
-This repository contains a web application that is part of the [Heritage In… Quick App project](https://pbesteu.github.io/poi-quick-app/).
+This repository contains a web application that is part of the [Heritage In… Quick App project](https://ow2-quick-app-initiative.github.io/poi-quick-app/).
 
 > The Heritage In… Quick App project provides a methodology and a set of tools for towns to promote their most precious assets, enabling citizens and institutions to launch new projects focused on local art, culture, history, nature, or whatever is engaging in a place.
 
-This project is a simple web application, based on [Fastify](https://www.fastify.io), that uses the outcomes generated through the [Heritage In… Quick App methodology](https://pbesteu.github.io/poi-quick-app/#Themethodology). This app enables the visualization of the databases that follow the templates provided.
+This project is a simple web application, based on [Fastify](https://www.fastify.io), that uses the outcomes generated through the [Heritage In… Quick App methodology](https://ow2-quick-app-initiative.github.io/poi-quick-app/#Themethodology). This app enables the visualization of the databases that follow the templates provided.
 
 ## Run it locally
 
@@ -37,7 +37,7 @@ The app requires the following parameters:
 
 ### Querystring parameters
 
-- `url`: (mandatory) string with the external URL with the database generated through the methodology (i.e., public `data.json` document). This document will be used to configure and populate the content of the app. For instance: `?url=https://pbesteu.github.io/cultural-heritage-quick-app/de/eckernforde/data.json`.
+- `url`: (mandatory) string with the external URL with the database generated through the methodology (i.e., public `data.json` document). This document will be used to configure and populate the content of the app. For instance: `?url=https://ow2-quick-app-initiative.github.io/poi-quick-app-implementations/de/eckernforde/data.json`.
 - `id`: (optional) string with the identifier of a point of interest to highlight. If the ID is not valid or not corresponds to any item in the database, it will ignored. For instance: `&id=1677`.
 
 ### URL path parameters:
@@ -48,22 +48,22 @@ The app requires the following parameters:
 
 Eckernförde (Germany) Street Heritage in English:
 
-[`http://localhost:3000/town/?url=https://pbest.eu/cultural-heritage-quick-app/de/eckernforde/data.json`](https://localhost:3000/town?url=http://pbest.eu/cultural-heritage-quick-app/de/eckernforde/data.json)
+[`http://localhost:3000/town/?url=https://ow2-quick-app-initiative.github.io/poi-quick-app-implementations/de/eckernforde/data.json`](https://localhost:3000/town?url=https://ow2-quick-app-initiative.github.io/poi-quick-app-implementations/de/eckernforde/data.json)
 
 Leuven (Belgium) Cultural Heritage in English:
 
-[`http://localhost:3000/town/?url=https://pbest.eu/cultural-heritage-quick-app/be/leuven/data.json`](https://localhost:3000/town?url=http://pbest.eu/cultural-heritage-quick-app/be/leuven/data.json)
+[`http://localhost:3000/town/?url=https://ow2-quick-app-initiative.github.io/poi-quick-app-implementations/be/leuven/heritage/data.json`](https://localhost:3000/town?url=https://ow2-quick-app-initiative.github.io/poi-quick-app-implementations/be/leuven/heritage/data.json)
 
 Eckernförde (Germany) Street Heritage in German:
 
-[`http://localhost:3000/town/de?url=https://pbest.eu/cultural-heritage-quick-app/de/eckernforde/data.json`](https://localhost:3000/town/de?url=http://pbest.eu/cultural-heritage-quick-app/de/eckernforde/data.json)
+[`http://localhost:3000/town/de?url=https://ow2-quick-app-initiative.github.io/poi-quick-app-implementations/de/eckernforde/data.json`](https://localhost:3000/town/de?url=https://ow2-quick-app-initiative.github.io/poi-quick-app-implementations/de/eckernforde/data.json)
 
 Select a statue (Rembert Dodoens) in Leuven Culture Heritage database:
 
-[`http://localhost:3000/town/?url=https://pbest.eu/cultural-heritage-quick-app/be/leuven/data.json&id=dodoens`](http://localhost:3000/town/?url=http://pbest.eu/cultural-heritage-quick-app/be/leuven/data.json&id=dodoens)
+[`http://localhost:3000/town/?url=https://ow2-quick-app-initiative.github.io/poi-quick-app-implementations/be/leuven/heritage/data.json&id=dodoens`](http://localhost:3000/town/?url=https://ow2-quick-app-initiative.github.io/poi-quick-app-implementations/be/leuven/heritage/data.json&id=dodoens)
 
 
 Select a building  (Rembert Dodoens) in the Eckernförde (Germany) Street Heritage project in German:
 
-[`http://localhost:3000/town/de?url=https://pbest.eu/cultural-heritage-quick-app/de/eckernforde/data.json&id=7096`](http://localhost:3000/town/de?url=https://pbest.eu/cultural-heritage-quick-app/de/eckernforde/data.json&id=7096)
+[`http://localhost:3000/town/de?url=https://ow2-quick-app-initiative.github.io/poi-quick-app-implementations/de/eckernforde/data.json&id=7096`](http://localhost:3000/town/de?url=https://ow2-quick-app-initiative.github.io/poi-quick-app-implementations/de/eckernforde/data.json&id=7096)
 

@@ -15,7 +15,7 @@ module.exports = async function (fastify, opts) {
   const fetch = require('cross-fetch');
   const Polyglot = require('node-polyglot');
 
-  // const jsonSchemaUrl = 'https://pbest.eu/poi-quick-app/schema.json';
+  // const jsonSchemaUrl = 'https://ow2-quick-app-initiative.github.io/poi-quick-app-implementations/de/eckernforde/data.json/schema.json';
   // // Validates the data against a JSON Schema
   // const resSchema = await fetch(jsonSchemaUrl);
   // if (resSchema.status >= 400) {
@@ -203,7 +203,7 @@ module.exports = async function (fastify, opts) {
       //     "name": "LVN Street Heritage",
       //     "id": "leuven",
       //     "location": "Leuven (🇧🇪)",
-      //     "source_url": "https://pbesteu.github.io/cultural-heritage-quick-app/be/leuven/data.json",
+      //     "source_url": "https://ow2-quick-app-initiative.github.io/poi-quick-app-implementations/be/leuven/data.json",
       //     "country": "Belgium",
       //     "lang": [ "en" ]
       //   },
