@@ -1,5 +1,4 @@
 <script>
-
   var CARDS_CONTAINER_ID = 'card-list'; 
   var MAPS_CONTAINER_ID = 'osm'; 
   var DETAILS_MODAL_ID = 'modal_detail'; 
@@ -53,6 +52,10 @@
     })
   }
 
+  /**
+   * Checks if the UA supports quick apps. 
+   * So far, it only checks if the UA is Huawei or Honor.
+   */  
   const uaSupportsQuickApp = (ua) => {
     return ((ua.indexOf("huawei") >= 0 || ua.indexOf("honor") >= 0) && (ua.indexOf("android") >= 0));
   }
@@ -177,6 +180,9 @@
     }, 400);
   }
 
+  /**
+   * Get the permalink to the PoI identified with 'id'
+   */ 
   function getPermalink(id) {
     // it could be either "/_/lang?url..." or "/town_id/"
     if (townId && townId.length>0) {
@@ -185,6 +191,9 @@
     return `${(window.location.protocol)}//${(window.location.host)}/_/${locale}/?url=${encodeURIComponent(dataUrl)}&id=${id}`;
   }
 
+  /**
+   * Share information about a PoI using the Share API
+   */ 
   function shareDetails({ name, description, id }) {
     var urlShare = getPermalink(id);
     var shareData = {
@@ -226,6 +235,10 @@
     return `${value} m. <%= i18n.t('cards.distance') %>`;        
   }
 
+  /**
+   * If the device supports Quick Apps, show the options to launch
+   * the application as a quick app.
+   */ 
   function showQuickAppOptions() {
     if (uaSupportsQuickApp(navigator.userAgent.toLowerCase())) {
       $('.btn-quickapp').show();
@@ -235,6 +248,9 @@
     }
   }
 
+  /**
+   * Close the init modals
+   */  
   function closeInitModals() {
     $('#modal-init').modal('close');
     $('#modal-intro-geolocation').modal('close');
@@ -275,6 +291,7 @@
    * Document on ready
    */ 
   $(function(){
+    // Init Materialize CSS
     initMaterializeComponents();
     // First checks if the user read the intro
     if (!localStorage.getItem('iWasHere')) {

@@ -4,7 +4,56 @@ This repository contains a web application that is part of the [Heritage In… Q
 
 > The Heritage In… Quick App project provides a methodology and a set of tools for towns to promote their most precious assets, enabling citizens and institutions to launch new projects focused on local art, culture, history, nature, or whatever is engaging in a place.
 
+## The app
+
 This project is a simple web application, based on [Fastify](https://www.fastify.io), that uses the outcomes generated through the [Heritage In… Quick App methodology](https://ow2-quick-app-initiative.github.io/poi-quick-app/#Themethodology). This app enables the visualization of the databases that follow the templates provided.
+
+The structure of the app is very simple. It uses [Embedded JavaScript (EJS)](https://ejs.co/) templating for the view and Fatify routes to serve the content. There are two main routes:
+
+1. List of all the implementations `/` (root).
+2. Specific implementation `/_/:locale?/?url={url_to_the_database}&id={poi_to_highlight}`. 
+
+
+## Existing implementations 
+
+The list of the implementations (available at `/`) is based on the information within the `/data/implementations.json` file. This document is based originally on a public document ([implementations.json](https://github.com/ow2-quick-app-initiative/poi-quick-app/blob/main/docs/implementations.json)) hosted in the main project´s repository (and publicly available at `https://ow2-quick-app-initiative.github.io/poi-quick-app/implementations.json`) that is updated when a Docker container is built using the default [Dockerfile](./Dockerfile)
+
+The instruction in the Dockerfile is the following.
+
+```
+ADD https://ow2-quick-app-initiative.github.io/poi-quick-app/implementations.json /usr/src/app/data/
+```
+
+If you have new implementations, please modify the [implementations.json document](https://github.com/ow2-quick-app-initiative/poi-quick-app/blob/main/docs/implementations.json) and send a pull request to the main repository. 
+
+The `implementations.json` document looks like this: 
+
+````json
+{
+  "version": 5,
+  "updated": "2022-10-11",
+  "towns" : [
+    { 
+      "name": "LVN Street Heritage",
+      "id": "leuven",
+      "location": "Leuven (🇧🇪)",
+      "source_url": "https://ow2-quick-app-initiative.github.io/poi-quick-app-implementations/be/leuven/heritage/data.json",
+      "country": "Belgium",
+      "lang": [ "en" ]
+    }
+
+  ]
+}
+```` 
+
+Each object in the `towns` list describes an instance of the app, identified by the `id` member and with the public configuration file (`source_url`). The example above shows the instance of _Leuven Cultural Heritage_, identified by `leuven` and with the configuration file at https://ow2-quick-app-initiative.github.io/poi-quick-app-implementations/be/leuven/heritage/data.json.
+
+### Pretty identifiers
+
+The `id` in the `towns` list in this document configures the URI of the application. This option is useful to avoid passing the full configuration url a querystring parameter.
+
+This way, the server accepts requests using the route `/:id`. For instance, in the previous example, you can access the Leuven example using `/leuven/`.
+
 
 ## Run it locally
 
@@ -67,3 +116,49 @@ Select a building  (Rembert Dodoens) in the Eckernförde (Germany) Street Herita
 
 [`http://localhost:3000/town/de?url=https://ow2-quick-app-initiative.github.io/poi-quick-app-implementations/de/eckernforde/data.json&id=7096`](http://localhost:3000/town/de?url=https://ow2-quick-app-initiative.github.io/poi-quick-app-implementations/de/eckernforde/data.json&id=7096)
 
+
+## Progressive Web Applications
+
+The app generates a Progressive Web Application (PWA) per instance. It will enable you to serve concrete instances as a standalone app (i.e., one PWA per use case).
+
+The app register a Service Worker and configures a manifest based on the configuration file through the EJS templates. This is the code you can find in the `<head>` section of the `index.ejs` file:
+
+````html
+  <link rel="manifest" href="/pwa/manifest.json?town_id=Paris&name=Paris%20Monumental&theme_color=%23fefefe">
+````
+
+The specific `pwa` route will generate the following JSON:
+
+````json
+{
+    "background_color": "#ffffff",
+    "dir": "ltr",
+    "display": "standalone",
+    "name": "Paris Monumental",
+    "orientation": "portrait",
+    "scope": "/Paris/",
+    "short_name": "Paris Monumental",
+    "start_url": "/Paris/",
+    "theme_color": "#fefefe",
+    "icons": [
+      {
+        "src": "/public/favicon.ico",
+        "type": "image/png",
+        "sizes": "32x32"
+      },
+      {
+        "src": "/public/images/logo.png",
+        "type": "image/png",
+        "sizes": "512x512"
+      }
+    ]
+}
+````
+
+The PWA will be under the path `/Paris`.
+
+## Dependencies
+
+- [Geolib](https://www.npmjs.com/package/geolib) for basic geospatial operations like distance calculations. 
+- [Leaflet](https://leafletjs.com/) for maps management. 
+- [Materialize CSS](https://materializecss.com/) for visual stylesheets and Web Components.

@@ -7,9 +7,6 @@
   <link rel="icon" type="image/png" href="/public/favicon.ico">
   <meta name="theme-color" content="<%= content.app.theme.brand %>" />
   <link rel="apple-touch-icon" href="/public/images/logo192.png">
-  <% if (townId) { %>
-  <link rel="manifest" href="/manifest/manifest.json?town_id=<%= encodeURIComponent(townId) %>&name=<%= encodeURIComponent(meta.app_title) %>&theme_color=<%= encodeURIComponent(content.app.theme.brand) %>">
-  <% } %>
   <!-- Leaflet -->
   <link href="/lib/leaflet/dist/leaflet.css" rel="stylesheet">
   <link href="/lib/leaflet.locatecontrol/dist/L.Control.Locate.min.css" rel="stylesheet">
@@ -19,12 +16,15 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="/lib/materialize-css/dist/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="/public/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <!-- Service worker registration -->
   <% if (townId) { %>
-    <%- include('service-worker') %>
+    <!-- Service Worker Registration & manifest linking 
+      (only if it´s an instance app, so with a 'townId' param) -->
+    <link rel="manifest" href="/pwa/manifest.json?town_id=<%= encodeURIComponent(townId) %>&name=<%= encodeURIComponent(meta.app_title) %>&theme_color=<%= encodeURIComponent(content.app.theme.brand) %>">
+    <%- include('pwa/service-worker-script') %>
   <% } %>
 </head>
 <body>
+  <!-- Header and tabs -->
   <div class="navbar-fixed"> 
     <nav class="nav-extended" style="background-color:<%= content.app.theme.brand %>">
       <div class="nav-wrapper">
@@ -39,26 +39,29 @@
     </nav>
   </div>
   <% if (meta.app_id && meta.marketplace_url && meta.marketplace_url.length>0)  { %>
-    <a class="btn-floating btn-quickapp btn-large waves-effect waves-light lime" href="https://hapjs.org/app/<%= meta.app_id %>/pages/Main"><i class="material-icons">exit_to_app</i></a>
+    <!-- If the configuration file indicates there is an alternative Quick App, 
+      it creates a floating button to access it -->  
+    <a class="btn-floating btn-quickapp btn-large waves-effect waves-light lime" 
+      href="https://hapjs.org/app/<%= meta.app_id %>/pages/Main"><i class="material-icons">exit_to_app</i></a>
   <% } %>
-  <!-- Cards -->
+  <!-- Cards with the PoIs -->
   <div id="cards" class="col s12">
     <div class="container">
       <div class="section">
         <div class="row" id="card-list">
-          <!-- The list of cards to be populated once we have the geolocation -->
+          <!-- The list of cards to be populated here once we have geolocation info -->
         </div>
         <p class="center-align"><%= i18n.t('cards.end') %></p>
       </div>      
     </div>
   </div>
-  <!-- end Cards -->
+  <!-- end of Cards -->
 
-  <!-- Map -->
+  <!-- Map with the PoIs -->
   <div id="map" class="col s12">
     <div id="osm"></div>
   </div>
-  <!-- end Map -->
+  <!-- end of Map -->
   
   <!-- Modal with details -->
   <%- include('modal/detail') %>  
@@ -70,17 +73,27 @@
   <%- include('modal/init-geolocation', { meta: meta }) %>
   <!-- Modal for quick app -->
   <%- include('modal/quickapp', { meta: meta }) %> 
-  <!-- Modal for changing lang -->
+  <!-- Modal for selecting language -->
   <%- include('modal/lang') %> 
 
-  <%- include('footer') %>
+  <footer class="page-footer grey darken-3 z-depth-2">
+    <div class="row">
+      <div class="col s12 right-align">
+        <a class='modal-trigger btn btn-flat' href='#modal-lang'><i class="material-icons">language</i></a>
+        &nbsp; | &nbsp;  
+        <a href="<%= content.app.issue_url %>" target="_blank"><%= i18n.t('index.feedback') %></a> 
+        &nbsp; | &nbsp;
+        <a class="modal-trigger" href="#modal-about"><%= i18n.t('index.about') %></a>
+      </div>
+    </div>
+  </footer>
   
-  <!--  Scripts-->
+  <!--  Complementary Scripts -->
   <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
   <script src="/lib/materialize-css/dist/js/materialize.min.js"></script>
   <script src="/lib/geolib/lib/index.js"></script>  
-  <%- include('scripts', { pois: content.pois, app: content.app } ) %>
-  <%- include('map', { pois: content.pois, color: 'red' }); %>
+  <%- include('scripts/scripts', { pois: content.pois, app: content.app } ) %>
+  <%- include('scripts/map', { pois: content.pois, color: 'red' }); %>
   
   </body>
 </html>
