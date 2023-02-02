@@ -7,16 +7,16 @@ This repository contains a web application that is part of the [Heritage In… Q
 Content on this page:
 
 <!-- vscode-markdown-toc -->
-* 1. [The app](#Theapp)
-* 2. [Existing implementations](#Existingimplementations)
-	* 2.1. [Pretty identifiers](#Prettyidentifiers)
-* 3. [Run it locally](#Runitlocally)
-* 4. [App Parameters](#AppParameters)
-	* 4.1. [Querystring parameters](#Querystringparameters)
-	* 4.2. [URL path parameters:](#URLpathparameters:)
-* 5. [Progressive Web Applications](#ProgressiveWebApplications)
-* 6. [Dependencies](#Dependencies)
-* 7. [Examples](#Examples)
+- 1. [The app](#Theapp)
+- 2. [Existing implementations](#Existingimplementations)
+  - 2.1. [Pretty identifiers](#Prettyidentifiers)
+- 3. [Run it locally](#Runitlocally)
+- 4. [App Parameters](#AppParameters)
+  - 4.1. [Querystring parameters](#Querystringparameters)
+  - 4.2. [URL path parameters:](#URLpathparameters:)
+- 5. [Progressive Web Applications](#ProgressiveWebApplications)
+- 6. [Dependencies](#Dependencies)
+- 7. [Examples](#Examples)
 
 <!-- vscode-markdown-toc-config
 	numbering=true
