@@ -3,7 +3,6 @@
 
 module.exports = async function (fastify, opts) {
 
-
   fastify.get('/', async (request, reply) => {
     var fs = require('fs')
     const path = require('path')
@@ -18,14 +17,11 @@ module.exports = async function (fastify, opts) {
     }
   })
 
-
   fastify.setNotFoundHandler({
     preValidation: (req, reply, done) => {
-      // your code
       done()
     },
     preHandler: (req, reply, done) => {
-      // your code
       done()
     }
   }, function (request, reply) {

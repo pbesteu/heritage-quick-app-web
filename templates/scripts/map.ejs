@@ -1,0 +1,65 @@
+<script>
+  var geojson = { type : "FeatureCollection", features: []};
+  var colors = ['red', 'blue', 'teal', 'brown', 'green', 'yellow', 'pink', 'pale'];
+  var color = '<%= color %>';
+  if (!color || !colors.includes(color)) {
+    color = 'red' // by default
+  }    
+
+  var map = L.map('osm').setView([43.294264019357556, -5.721740550556461], 10);
+
+  var tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  maxZoom: 19,
+  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
+
+  function createCustomIconMarker (latlng, title, iconUrl) {
+    let myIcon = L.icon({
+      iconUrl: iconUrl,
+      title: title,
+      alt: title,
+      iconSize: [28, 41],
+      iconAnchor: [14, 40],
+      popupAnchor: [0, -41]
+    })
+    return L.marker(latlng, { icon: myIcon })
+  }
+
+  var poiLayer = L.featureGroup().addTo(map);
+
+  function openDirections(poiLon, poiLat, title) {
+    //var urlDirections = `https://www.google.com/maps/dir/?api=1&origin=${myPosition.lat},${myPosition.lon}&destination=${poiLat},${poiLon}&dir_action=navigate&travelmode=walking`;
+    var urlDirections = `https://www.petalmaps.com/nav/${myPosition.lon},${myPosition.lat}/${poiLon},${poiLat}/My%20location/${encodeURIComponent(title)}/walk`;
+    window.open(urlDirections, '_blank');
+  }
+
+  const icon = `/public/maps/leaflet/images/marker-icon-${color}.png`
+  // The array with all the markers
+  var markers = [];
+  // A dictionary with the markers ("uniqueID" : "position in the markers array")
+  var mapMarkers = {};
+  
+  pois.forEach(function(poi, index) {
+    var marker = createCustomIconMarker([poi.lat,poi.lon], poi.name, icon).addTo(poiLayer);
+    var image = (poi.images.length > 0)? poi.images[0] : '/public/images/placeholder.jpg';
+    marker.bindPopup(`<div class="card"><div class="card-image"><img src="${image}" alt="${poi.name}"><span class="card-title">${poi.name}</span></div><div class="card-content"><p>${poi.description}</p></div><div class="card-action"><a href="#" onclick="populateOpenDetailDialog('${poi.id}')"><%= i18n.t('map.details') %></a><a onclick="openDirections('${poi.lon}', '${poi.lat}', '${poi.name}')" href="#"><%= i18n.t('map.directions') %></a></div></div>`);
+    markers.push(marker);
+    mapMarkers[`${poi.id}`] = index;
+  })
+
+  map.fitBounds(poiLayer.getBounds());   
+  L.control.locate({
+    flyTo: true,
+    showCompass: true
+  }).addTo(map);
+
+  function openMapOn(identifier) {
+    // Select "map" tab
+    var instanceTabs = M.Tabs.getInstance($('.tabs'));
+    instanceTabs.select('map');
+    // Open the popup of the marker with id = marker
+    if (identifier in mapMarkers) {
+      markers[mapMarkers[identifier]].openPopup();
+    }
+  }
+</script>

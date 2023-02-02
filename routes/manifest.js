@@ -18,7 +18,7 @@ module.exports = async function (fastify, opts) {
    * name (name and short_name)
    */
 
-   fastify.get('/manifest/manifest.json', options, async (request, reply) => {
+   fastify.get('/pwa/manifest.json', options, async (request, reply) => {
     const { town_id, name, theme_color } = request.query;
     try {
       if (!name && !theme_color) {
@@ -30,7 +30,7 @@ module.exports = async function (fastify, opts) {
         name,
       };
       reply.header('Content-Type', 'application/json; charset=utf-8') 
-      return reply.view('/templates/manifest/manifest.ejs', templateParams)
+      return reply.view('/templates/pwa/manifest.ejs', templateParams)
     } catch (err) {
       // If error, sends the static manifest
       return reply.sendFile('manifest.json')
