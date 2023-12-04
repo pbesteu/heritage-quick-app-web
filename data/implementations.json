@@ -1,12 +1,12 @@
 {
-  "version": 5,
-  "updated": "2022-10-11",
+  "version": 7,
+  "updated": "2023-10-17",
   "towns" : [
     { 
       "name": "LVN Street Heritage",
       "id": "leuven",
       "location": "Leuven (🇧🇪)",
-      "source_url": "https://ow2-quick-app-initiative.github.io/poi-quick-app-implementations/be/leuven/heritage/data.json",
+      "source_url": "https://ow2-miniapp-initiative.github.io/poi-miniapp-implementations/be/leuven/heritage/data.json",
       "country": "Belgium",
       "lang": [ "en" ]
     },
@@ -14,7 +14,7 @@
       "name": "BXL Comic Book Route",
       "id": "comics",
       "location": "Brussels (🇧🇪)",
-      "source_url": "https://ow2-quick-app-initiative.github.io/poi-quick-app-implementations/be/brussels/comics/data.json",
+      "source_url": "https://ow2-miniapp-initiative.github.io/poi-miniapp-implementations/be/brussels/comics/data.json",
       "country": "Belgium",
       "lang": [ "en" ]
     },
@@ -22,23 +22,15 @@
       "name": "Antwerpen Middelheimmuseum",
       "id": "middelheim",
       "location": "Antwerpen (🇧🇪)",
-      "source_url": "https://ow2-quick-app-initiative.github.io/poi-quick-app-implementations/be/antwerpen/middelheimmuseum/data.json",
+      "source_url": "https://ow2-miniapp-initiative.github.io/poi-miniapp-implementations/be/antwerpen/middelheimmuseum/data.json",
       "country": "Belgium",
       "lang": [ "en" ]
-    },
-    { 
-      "name": "Eckernförde Street Heritage",
-      "id": "eckernforde",
-      "location": "Eckernförde (🇩🇪)",
-      "source_url": "https://ow2-quick-app-initiative.github.io/poi-quick-app-implementations/de/eckernforde/data.json",
-      "country": "Germany",
-      "lang": [ "en", "de" ]
     },
     { 
       "name": "Oeratoom (Primeval Atom)",
       "id": "oeratoom",
       "location": "Leuven (🇧🇪)",
-      "source_url": "https://ow2-quick-app-initiative.github.io/poi-quick-app-implementations/be/leuven/oeratoom/data.json",
+      "source_url": "https://ow2-miniapp-initiative.github.io/poi-miniapp-implementations/be/leuven/oeratoom/data.json",
       "country": "Belgium",
       "lang": [ "en" ]
     },
@@ -46,7 +38,7 @@
       "name": "Barcelona Beaches",
       "id": "barcelona",
       "location": "Barcelona (🇪🇸)",
-      "source_url": "https://ow2-quick-app-initiative.github.io/poi-quick-app-implementations/es/barcelona/beach/data.json",
+      "source_url": "https://ow2-miniapp-initiative.github.io/poi-miniapp-implementations/es/barcelona/beach/data.json",
       "country": "Spain",
       "lang": [ "en", "ca" ]
     },
@@ -54,9 +46,65 @@
       "name": "Amsterdam Historic Buildings",
       "id": "amsterdam",
       "location": "Amsterdam (🇳🇱)",
-      "source_url": "https://ow2-quick-app-initiative.github.io/poi-quick-app-implementations/nl/amsterdam/data.json",
+      "source_url": "https://ow2-miniapp-initiative.github.io/poi-miniapp-implementations/nl/amsterdam/data.json",
       "country": "Netherlands",
       "lang": [ "en" ]
-    }
+    },
+    { 
+      "name": "Paris Cultural Heritage",
+      "id": "paris",
+      "location": "Paris (🇫🇷)",
+      "source_url": "https://ow2-miniapp-initiative.github.io/poi-miniapp-implementations/fr/paris/heritage/data.json",
+      "country": "France",
+      "lang": [ "en", "fr" ]
+    },
+    { 
+      "name": "Illustrious Parisian Women",
+      "id": "women",
+      "location": "Paris (🇫🇷)",
+      "source_url": "https://ow2-miniapp-initiative.github.io/poi-miniapp-implementations/fr/paris/women/data.json",
+      "country": "France",
+      "lang": [ "en", "fr" ]
+    },
+    { 
+      "name": "Monumental Trees in Paris",
+      "id": "trees",
+      "location": "Paris (🇫🇷)",
+      "source_url": "https://ow2-miniapp-initiative.github.io/poi-miniapp-implementations/fr/paris/trees/data.json",
+      "country": "France",
+      "lang": [ "en", "fr" ]
+    },
+    { 
+      "name": "Make a Green Day! (Saint Patrick's Day)",
+      "id": "greenday",
+      "location": "Ireland (🇮🇪)",
+      "source_url": "https://raw.githubusercontent.com/coral2742/Quick-app/main/docs/verdePorUnDia/data.json",
+      "country": "Ireland",
+      "lang": [ "en" ]
+    },
+    { 
+      "name": "Best of Kerkyra",
+      "id": "corfu",
+      "location": "Corfu (🇬🇷)",
+      "source_url": "https://ow2-miniapp-initiative.github.io/poi-miniapp-implementations/gr/corfu/data.json",
+      "country": "Greece",
+      "lang": [ "en" ]
+    },
+    { 
+      "name": "Best of Kos",
+      "id": "kos",
+      "location": "Kos (🇬🇷)",
+      "source_url": "https://ow2-miniapp-initiative.github.io/poi-miniapp-implementations/gr/kos/data.json",
+      "country": "Greece",
+      "lang": [ "en" ]
+    },
+    { 
+      "name": "Asturias a pie (Asturias by foot)",
+      "id": "asturias",
+      "location": "Asturias (🇪🇸)",
+      "source_url": "https://uo283428.github.io/AsturiasAPie/docs/sample/data.json",
+      "country": "Spain",
+      "lang": [ "en", "es" ]
+    }    
   ]
 }
