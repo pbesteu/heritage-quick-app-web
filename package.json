@@ -1,7 +1,11 @@
 {
   "name": "heritage-quick-app-web",
-  "version": "1.0.0",
-  "description": "This project was bootstrapped with Fastify-CLI.",
+  "repository": {
+    "type": "git",
+    "url" : "https://github.com/pbesteu/heritage-quick-app-web.git"
+  },  
+  "version": "1.0.1",
+  "description": "Heritage in... project for the Web (Meta PWA)",
   "main": "app.js",
   "directories": {
     "test": "test"
